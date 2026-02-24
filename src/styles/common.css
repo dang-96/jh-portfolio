@@ -1,0 +1,214 @@
+:root {
+  --background-color: #fff;
+  --font-color: #333;
+  --point-color: #3e5f44;
+  --background-opacity-color: rgba(255, 255, 255, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  word-break: keep-all;
+  word-break: break-word;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-family:
+    "Noto Sans KR", "맑은고딕", "Malgun Gothic", malgun, "돋움", Dotum, "굴림",
+    Gulim, "AppleSDGothicNeo-Light", AppleGothic, Helvetica, Arial,
+    "HelveticaNeue-Light", "sans-serif-light", sans-serif;
+  font-size: 62.5%;
+  font-weight: 400;
+  line-height: normal;
+  color: #464646;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: bold;
+  margin: 0;
+  line-height: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+}
+
+a {
+  display: inline-block;
+  font-weight: 400;
+  text-decoration: none;
+  color: #464646;
+}
+a:focus {
+  /* color: #464646; */
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  /* color: #464646; */
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+span {
+  display: inline-block;
+}
+
+img {
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+table caption {
+  font-size: 0;
+  padding: 0;
+  margin: 0;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+address {
+  font-style: normal;
+  margin: 0;
+}
+
+input:focus,
+button:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin: 0;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+button:focus {
+  outline: none;
+}
+
+label {
+  display: inline-block;
+  font-weight: normal;
+  margin: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family:
+    "Noto Sans KR", "맑은고딕", "Malgun Gothic", malgun, "돋움", Dotum, "굴림",
+    Gulim, "AppleSDGothicNeo-Light", AppleGothic, Helvetica, Arial,
+    "HelveticaNeue-Light", "sans-serif-light", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #464646;
+}
+input:focus,
+button:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1;
+  background-position-y: 42%;
+  background-position-x: calc(100% - 12px);
+  background-repeat: no-repeat;
+}
+input[type="date"]::-webkit-calendar-picker-indicator::before,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator::before {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/NotoSans-Bold.svg#NotoSans-Bold") format("svg");
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/NotoSans-Medium.svg#NotoSans-Medium") format("svg");
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/NotoSans-Regular.svg#NotoSans-Regular") format("svg");
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../fonts/NotoSans-Light.svg#NotoSans-Light") format("svg");
+}
