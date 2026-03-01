@@ -97,16 +97,14 @@ function Works() {
     return () => ctx.revert();
   }, []);
 
-  const sectionBg = "linear-gradient(120deg, #191c1f 0%, #212c23 100%)";
   const cardBg =
-    "bg-gradient-to-br from-[#22272e] to-[#232d28] border border-white/10";
+    "bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-xl dark:bg-gradient-to-br dark:from-[#22272e] dark:to-[#232d28] dark:border-white/10";
 
   return (
     <section
       ref={sectionRef}
       id="works-section"
-      className="relative min-h-screen py-[8rem] px-4 sm:px-6 lg:px-10 overflow-hidden"
-      style={{ background: sectionBg }}
+      className="section-works relative min-h-screen py-[8rem] px-4 sm:px-6 lg:px-10 overflow-hidden"
     >
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
@@ -156,15 +154,15 @@ function Works() {
               ref={(el) => {
                 cardRefs.current[index] = el;
               }}
-              className={`${cardBg} rounded-3xl p-6 sm:p-8 shadow-xl transition-shadow hover:shadow-2xl`}
+              className={`${cardBg} transition-shadow hover:shadow-2xl`}
             >
-              <span className="text-[1.125rem] md:text-[1.25rem] text-[#67dbfe] font-medium block mb-2">
+              <span className="text-[1.125rem] md:text-[1.25rem] text-[#0d9488] dark:text-[#67dbfe] font-medium block mb-2">
                 {item.subTitle}
               </span>
-              <strong className="text-[1.5rem] md:text-[1.625rem] font-bold text-white/95 block mb-2 leading-snug">
+              <strong className="text-[1.5rem] md:text-[1.625rem] font-bold text-gray-900 dark:text-white/95 block mb-2 leading-snug">
                 {item.title}
               </strong>
-              <p className="text-[1.25rem] md:text-[1.375rem] text-white/75 leading-relaxed">
+              <p className="text-[1.25rem] md:text-[1.375rem] text-gray-600 dark:text-white/75 leading-relaxed">
                 {item.desc}
               </p>
             </li>

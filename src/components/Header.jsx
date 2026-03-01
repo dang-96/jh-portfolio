@@ -43,7 +43,7 @@ function Header() {
     <div
       className={clsx(
         "lg:hidden fixed left-0 right-0 bottom-0 top-[4.2rem] md:top-[5.5rem] z-[999] transition-opacity duration-300",
-        "bg-[#181e26]/98 backdrop-blur-xl border-t border-white/5",
+        "bg-gray-100/98 dark:bg-[#181e26]/98 backdrop-blur-xl border-t border-gray-200 dark:border-white/5",
         isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
       )}
       aria-hidden={!isMenuOpen}
@@ -58,7 +58,7 @@ function Header() {
               onClick={closeMenu}
               className={clsx(
                 "text-[1.625rem] md:text-[1.875rem] font-bold py-3 transition-colors",
-                isActive ? "text-[#67dbfe]" : "text-white hover:text-[#7dd6ea]",
+                isActive ? "text-[#67dbfe]" : "text-gray-800 dark:text-white hover:text-[#7dd6ea]",
               )}
             >
               {item.text}
@@ -72,20 +72,12 @@ function Header() {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 w-full z-[1000] text-white transition-all duration-300",
+        "fixed top-0 left-0 w-full z-[1000] text-gray-900 dark:text-white transition-all duration-300",
         "px-4 py-0 md:px-8 lg:px-[3rem]",
         isScrolled
-          ? "bg-[#181e26]/90 backdrop-blur-xl border-b border-white/5 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.4)]"
-          : "bg-transparent border-b border-transparent",
+          ? "bg-white/90 dark:bg-[#181e26]/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/5 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.4)]"
+          : "bg-transparent border-b border-transparent dark:border-transparent",
       )}
-      style={
-        isScrolled
-          ? {
-              background:
-                "linear-gradient(120deg, rgba(24,30,38,0.92) 0%, rgba(34,39,46,0.94) 100%)",
-            }
-          : undefined
-      }
     >
       <div className="w-full max-w-[1920px] h-[4.2rem] md:h-[5.5rem] lg:h-[7.2rem] mx-auto flex justify-between items-center select-none">
         <h1 className="flex items-center h-full py-2">
@@ -117,7 +109,7 @@ function Header() {
                       "after:content-[''] after:block after:absolute after:left-0 after:-bottom-1 after:h-[2.5px] after:origin-left after:transition-transform after:duration-300",
                       isActive
                         ? "text-[#67dbfe] after:w-full after:scale-x-100 after:bg-[#67dbfe]"
-                        : "text-white/80 hover:text-white after:w-full after:scale-x-0 after:bg-[#67dbfe] hover:after:scale-x-100 focus:after:scale-x-100",
+                        : "text-gray-600 dark:text-white/80 hover:text-gray-900 dark:hover:text-white after:w-full after:scale-x-0 after:bg-[#67dbfe] hover:after:scale-x-100 focus:after:scale-x-100",
                     )}
                     style={{ WebkitTapHighlightColor: "transparent" }}
                   >
@@ -130,27 +122,27 @@ function Header() {
         </nav>
 
         <button
-          type="button"
-          aria-label="메뉴 열기"
+            type="button"
+            aria-label="메뉴 열기"
           aria-expanded={isMenuOpen}
-          className="lg:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5 rounded-lg hover:bg-white/10 transition-colors"
+          className="lg:hidden w-10 h-10 flex flex-col justify-center items-center gap-1.5 rounded-lg hover:bg-gray-200 dark:hover:bg-white/10 transition-colors"
           onClick={() => setIsMenuOpen((prev) => !prev)}
         >
           <span
             className={clsx(
-              "block w-6 h-0.5 bg-white rounded transition-transform duration-300",
+              "block w-6 h-0.5 bg-gray-700 dark:bg-white rounded transition-transform duration-300",
               isMenuOpen && "rotate-45 translate-y-2",
             )}
           />
           <span
             className={clsx(
-              "block w-6 h-0.5 bg-white rounded transition-opacity duration-300",
+              "block w-6 h-0.5 bg-gray-700 dark:bg-white rounded transition-opacity duration-300",
               isMenuOpen && "opacity-0",
             )}
           />
           <span
             className={clsx(
-              "block w-6 h-0.5 bg-white rounded transition-transform duration-300",
+              "block w-6 h-0.5 bg-gray-700 dark:bg-white rounded transition-transform duration-300",
               isMenuOpen && "-rotate-45 -translate-y-2",
             )}
           />

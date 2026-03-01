@@ -1,16 +1,16 @@
 import { useTrail, animated } from "@react-spring/web";
 
 // to/from 이 바뀌면 react-spring 내부에서 스택 오버플로우 발생 → 상수 config만 사용
-const TRAIL_FROM = { opacity: 0, y: 54 };
+const TRAIL_FROM = { opacity: 0, y: 28 };
 const TRAIL_TO = { opacity: 1, y: 0 };
-const TRAIL_CONFIG = { tension: 180, friction: 20 };
+const TRAIL_CONFIG = { tension: 100, friction: 26 };
 
 function AnimatedProjectList({ projects, cardBg }) {
   const trail = useTrail(projects.length, {
     from: TRAIL_FROM,
     to: TRAIL_TO,
     config: TRAIL_CONFIG,
-    delay: 100,
+    delay: 80,
   });
 
   return (
@@ -21,10 +21,11 @@ function AnimatedProjectList({ projects, cardBg }) {
           style={{
             opacity: trail[idx].opacity,
             transform: trail[idx].y.to((v) => `translateY(${v}px)`),
+            willChange: "opacity, transform",
           }}
           className={`
             w-full
-            ${cardBg} rounded-3xl shadow-xl border border-white/10
+            ${cardBg} rounded-3xl shadow-xl
             flex flex-col items-stretch transition-transform duration-200
             hover:scale-[1.02] hover:shadow-2xl
           `}
@@ -65,7 +66,7 @@ function AnimatedProjectList({ projects, cardBg }) {
                   WebSite
                 </a>
                 <a
-                  href={item.notionUrl}
+                  href={item.githubUrl}
                   className="
                     text-[1.0625rem] md:text-[1.125rem] px-4 py-1 rounded-full font-semibold border border-[#b8a3ee]/60
                     bg-white/80 text-[#5c5d7b] shadow hover:bg-[#b8a3ee]/80 hover:text-[#2b2636] hover:border-[#b8a3ee] transition-all
@@ -73,11 +74,11 @@ function AnimatedProjectList({ projects, cardBg }) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Notion
+                  GitHub
                 </a>
               </div>
             </div>
-            <p className="text-[1.25rem] md:text-[1.375rem] text-white/90 font-normal leading-relaxed mt-1">
+            <p className="text-[1.25rem] md:text-[1.375rem] text-gray-700 dark:text-white/90 font-normal leading-relaxed mt-1">
               {item.content}
             </p>
           </div>

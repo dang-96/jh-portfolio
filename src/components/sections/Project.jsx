@@ -2,13 +2,15 @@ import { useRef } from "react";
 import { useInViewOnce } from "../../hooks/useInViewOnce";
 import AnimatedProjectList from "../AnimatedProjectList";
 
+const IN_VIEW_OPTIONS = { threshold: 0.1 };
+
 function Project() {
   const sectionRef = useRef(null);
-  const inView = useInViewOnce(sectionRef);
+  const inView = useInViewOnce(sectionRef, IN_VIEW_OPTIONS);
 
   const publicUrl = process.env.PUBLIC_URL || "";
-  const sectionBg = "linear-gradient(120deg, #191c1f 0%, #212c23 100%)";
-  const cardBg = "bg-gradient-to-br from-[#22272e] to-[#232d28] bg-opacity-90";
+  const cardBg =
+    "bg-white border border-gray-200 shadow-xl dark:bg-gradient-to-br dark:from-[#22272e] dark:to-[#232d28] dark:bg-opacity-90 dark:border-white/10";
   const projects = [
     {
       id: "pokemon",
@@ -16,8 +18,8 @@ function Project() {
       image: `${publicUrl}/images/project-pokemon-image.png`,
       imageAlt: "포켓몬 프로젝트 이미지",
       content: "포켓몬 도감을 보고 공부하여 퀴즈를 풀 수 있는 서비스",
-      siteUrl: "/",
-      notionUrl: "/",
+      siteUrl: "https://poke-sensei.vercel.app/",
+      githubUrl: "https://github.com/dang-96/poke-sensei",
     },
     {
       id: "moving",
@@ -25,8 +27,8 @@ function Project() {
       image: `${publicUrl}/images/project-moving-image.png`,
       imageAlt: "무빙 프로젝트 이미지",
       content: "스트리밍 웹 사이트 느낌처럼 영화의 정보를 알 수 있는 서비스",
-      siteUrl: "/",
-      notionUrl: "/",
+      siteUrl: "https://ott-moving.vercel.app/",
+      githubUrl: "https://github.com/dang-96/moving",
     },
     {
       id: "epigram",
@@ -34,8 +36,8 @@ function Project() {
       image: `${publicUrl}/images/project-epigram-image.png`,
       imageAlt: "에피그램 프로젝트 이미지",
       content: "감정상태에 따른 명언과 글귀들을 열람하고 공유하는 서비스",
-      siteUrl: "/",
-      notionUrl: "/",
+      siteUrl: "https://epigram-share.vercel.app/",
+      githubUrl: "https://github.com/dang-96/Epigram",
     },
     {
       id: "linkbrary",
@@ -43,8 +45,8 @@ function Project() {
       image: `${publicUrl}/images/project-linkbrary-image.png`,
       imageAlt: "링크브러리 프로젝트 이미지",
       content: "나만의 링크를 모아두는 저장소 서비스",
-      siteUrl: "/",
-      notionUrl: "/",
+      siteUrl: "https://l1nkbrary.netlify.app/",
+      githubUrl: "https://github.com/dang-96/Linkbrary",
     },
   ];
 
@@ -52,8 +54,7 @@ function Project() {
     <section
       ref={sectionRef}
       id="project-section"
-      className="relative min-h-screen py-[8rem] px-4 sm:px-6 lg:px-10 bg-[#181e26] overflow-hidden"
-      style={{ background: sectionBg }}
+      className="section-project relative min-h-screen py-[8rem] px-4 sm:px-6 lg:px-10 overflow-hidden"
     >
       {/* Subtle gradients - visual.jsx 스타일 */}
       <div
@@ -94,9 +95,15 @@ function Project() {
           PROJECT
         </h2>
         {inView ? (
-          <AnimatedProjectList projects={projects} cardBg={cardBg} />
+          <AnimatedProjectList
+            projects={projects}
+            cardBg={cardBg}
+          />
         ) : (
-          <div className="min-h-[420px]" aria-hidden="true" />
+          <div
+            className="min-h-[420px]"
+            aria-hidden="true"
+          />
         )}
       </div>
     </section>
