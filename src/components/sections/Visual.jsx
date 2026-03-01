@@ -60,7 +60,7 @@ function Visual() {
             transform: trail[0].y.to((v) => `translateY(${v}px)`),
             backdropFilter: "blur(3px)",
           }}
-          className="mb-10 sm:mb-12 inline-flex items-center gap-3 px-6 py-2.5 rounded-full font-semibold uppercase text-base tracking-wider text-[#85e9c9] bg-white/5 border border-[#53dec0]/30"
+          className="mb-10 sm:mb-12 inline-flex items-center gap-3 px-6 py-2.5 rounded-full font-semibold uppercase text-[1.125rem] md:text-[1.25rem] tracking-wider text-[#85e9c9] bg-white/5 border border-[#53dec0]/30"
         >
           {items[0]}
         </animated.div>
@@ -98,7 +98,7 @@ function Visual() {
             opacity: trail[3].opacity,
             transform: trail[3].y.to((v) => `translateY(${v}px)`),
           }}
-          className="max-w-3xl mx-auto text-xl sm:text-2xl text-white/60 font-normal leading-relaxed mb-14 sm:mb-16"
+          className="max-w-3xl mx-auto text-[1.375rem] md:text-[1.5rem] text-white/60 font-normal leading-relaxed mb-14 sm:mb-16"
         >
           {items[3]}
         </animated.p>
@@ -108,7 +108,7 @@ function Visual() {
           <a
             href="https://fair-verdict-78d.notion.site/1e3426fffa2b80d1ba1ae25added40d2"
             target="_blank"
-            className="px-10 py-3.5 rounded-full bg-gradient-to-br from-[#67dbfe] to-[#b8a3ee] text-[#212530] font-bold text-lg shadow-lg hover:from-[#81ecd8] hover:to-[#67dbfe] hover:scale-105 focus:scale-105 focus:ring-2 focus:ring-[#67dbfe] transition-all duration-150"
+            className="px-10 py-3.5 rounded-full bg-gradient-to-br from-[#67dbfe] to-[#b8a3ee] text-[#212530] font-bold text-[1.25rem] md:text-[1.375rem] shadow-lg hover:from-[#81ecd8] hover:to-[#67dbfe] hover:scale-105 focus:scale-105 focus:ring-2 focus:ring-[#67dbfe] transition-all duration-150"
             rel="noreferrer"
           >
             이력서 바로보기

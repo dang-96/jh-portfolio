@@ -42,17 +42,17 @@ function AboutAnimatedBlocks({ cardBg, pointColor }) {
         className={`${cardBg} flex flex-col-reverse md:flex-row md:items-center justify-center rounded-3xl p-[2.6rem] md:p-[4.2rem] gap-[4.5rem] mb-[6.5rem] shadow-2xl border border-white/10`}
       >
           <div className="flex-1">
-            <h3 className="font-bold text-[2.4rem] md:text-[3rem] mb-8 text-white/90 leading-[1.22]">
+            <h3 className="font-bold text-[2rem] md:text-[2.25rem] mb-8 text-white/90 leading-[1.22]">
               염정훈{" "}
-              <span className="text-white/50 text-xl ml-2">
+              <span className="text-white/50 text-[1.25rem] md:text-[1.375rem] ml-2">
                 | 1996.02.25 | 웹 퍼블리셔
               </span>
             </h3>
-            <p className="text-[1.35rem] md:text-[1.5rem] text-white/80 mb-6 leading-[2]">
+            <p className="text-[1.375rem] md:text-[1.5rem] text-white/80 mb-6 leading-[2]">
               안녕하세요! 3년차 웹 퍼블리셔{" "}
               <span className="font-semibold">염정훈</span>입니다.
             </p>
-            <p className="text-[1.18rem] md:text-[1.25rem] text-white/80 mb-6 leading-[2]">
+            <p className="text-[1.25rem] md:text-[1.375rem] text-white/80 mb-6 leading-[2]">
               <strong className={`${pointColor}`}>
                 HTML, CSS, JavaScript, JQuery
               </strong>
@@ -63,13 +63,13 @@ function AboutAnimatedBlocks({ cardBg, pointColor }) {
               </strong>
               으로 다양한 디바이스에 일관된 경험을 제공합니다.
             </p>
-            <p className="text-[1.18rem] md:text-[1.25rem] text-white/80 mb-6 leading-[2]">
+            <p className="text-[1.25rem] md:text-[1.375rem] text-white/80 mb-6 leading-[2]">
               <strong className={pointColor}>SCSS, Tailwind</strong> 등 도구를
               활용해 유지보수성을 고려한 스타일 구조를 설계하고,
               <strong className={pointColor}> 디자이너와의 협업</strong>을 통해
               시각적 완성도를 높였습니다.
             </p>
-            <p className="text-[1.18rem] md:text-[1.25rem] text-white/80 mb-10 leading-[2]">
+            <p className="text-[1.25rem] md:text-[1.375rem] text-white/80 mb-10 leading-[2]">
               최근에는{" "}
               <strong className={`${pointColor}`}>
                 React, TypeScript, Next.js
@@ -78,7 +78,7 @@ function AboutAnimatedBlocks({ cardBg, pointColor }) {
               구현이 가능합니다.
             </p>
             <a
-              className={`inline-flex items-center gap-3 mt-4 text-xl font-bold ${pointColor} relative group
+              className={`inline-flex items-center gap-3 mt-4 text-[1.25rem] md:text-[1.375rem] font-bold ${pointColor} relative group
                 hover:underline underline-offset-4 transition-all duration-150`}
               href="https://www.notion.so/1e3426fffa2b80d1ba1ae25added40d2"
               target="_blank"
@@ -112,19 +112,19 @@ function AboutAnimatedBlocks({ cardBg, pointColor }) {
           <div
             className={`${cardBg} flex-1 rounded-3xl p-[2.8rem] md:p-[3.4rem] shadow-lg border border-white/10 flex flex-col`}
           >
-            <h3 className="text-[2rem] font-bold mb-10 text-[#81ecd8] tracking-wide">
+            <h3 className="text-[1.75rem] md:text-[2rem] font-bold mb-10 text-[#81ecd8] tracking-wide">
               WORK EXPERIENCE
             </h3>
             <ul className="[&_li]:mb-7 [&_li:last-child]:mb-0">
-              <li className="text-white/90 text-[1.3rem] flex flex-col gap-1">
+              <li className="text-white/90 text-[1.375rem] md:text-[1.5rem] flex flex-col gap-1.5">
                 (주)리얼인벤션
-                <span className="text-base text-[#67dbfe]">
+                <span className="text-[1.125rem] md:text-[1.25rem] text-[#67dbfe]">
                   (2022.01 ~ 2024.04) 웹 퍼블리셔(대리)
                 </span>
               </li>
-              <li className="text-white/90 text-[1.3rem] flex flex-col gap-1">
+              <li className="text-white/90 text-[1.375rem] md:text-[1.5rem] flex flex-col gap-1.5">
                 (주)언플러
-                <span className="text-base text-[#67dbfe]">
+                <span className="text-[1.125rem] md:text-[1.25rem] text-[#67dbfe]">
                   (2025.09 ~ 2026.02) 웹 퍼블리셔(사원)
                 </span>
               </li>
@@ -134,14 +134,14 @@ function AboutAnimatedBlocks({ cardBg, pointColor }) {
           <div
             className={`${cardBg} flex-1 rounded-3xl p-[2.8rem] md:p-[3.4rem] shadow-lg border border-white/10 flex flex-col`}
           >
-            <h3 className="text-[2rem] font-bold mb-10 text-[#81ecd8] tracking-wide">
+            <h3 className="text-[1.75rem] md:text-[2rem] font-bold mb-10 text-[#81ecd8] tracking-wide">
               SKILL
             </h3>
             <ul className="flex flex-wrap gap-4">
               {SKILLS.map((skill) => (
                 <li
                   key={skill}
-                  className="text-[1.18rem] py-2.5 px-6 rounded-full bg-white/90 font-semibold tracking-wider text-[#227c66] shadow-[0_0_8px_1.5px_rgba(103,219,254,0.10)] transition-all hover:bg-[#67dbfe]/85 hover:text-[#182025]"
+                  className="text-[1.125rem] md:text-[1.25rem] py-2.5 px-6 rounded-full bg-white/90 font-semibold tracking-wider text-[#227c66] shadow-[0_0_8px_1.5px_rgba(103,219,254,0.10)] transition-all hover:bg-[#67dbfe]/85 hover:text-[#182025]"
                 >
                   {skill}
                 </li>
@@ -162,25 +162,25 @@ function AboutAnimatedBlocks({ cardBg, pointColor }) {
           <div
             className={`${cardBg} flex-1 rounded-3xl p-[2.8rem] md:p-[3.4rem] shadow-lg border border-white/10 flex flex-col`}
           >
-            <h3 className="text-[2rem] font-bold mb-10 text-[#81ecd8] tracking-wide">
+            <h3 className="text-[1.75rem] md:text-[2rem] font-bold mb-10 text-[#81ecd8] tracking-wide">
               EDUCATION
             </h3>
             <ul className="[&_li]:mb-7 [&_li:last-child]:mb-0">
-              <li className="text-white/90 text-[1.3rem] flex flex-col gap-1">
+              <li className="text-white/90 text-[1.375rem] md:text-[1.5rem] flex flex-col gap-1.5">
                 코드잇 프론트엔드 스프린트 수료
-                <span className="text-base text-[#67dbfe]">
+                <span className="text-[1.125rem] md:text-[1.25rem] text-[#67dbfe]">
                   (2024.06 ~ 2024.11)
                 </span>
               </li>
-              <li className="text-white/90 text-[1.3rem] flex flex-col gap-1">
+              <li className="text-white/90 text-[1.375rem] md:text-[1.5rem] flex flex-col gap-1.5">
                 라인컴퓨터아트학원 수료
-                <span className="text-base text-[#67dbfe]">
+                <span className="text-[1.125rem] md:text-[1.25rem] text-[#67dbfe]">
                   (2021.06 ~ 2021.11)
                 </span>
               </li>
-              <li className="text-white/90 text-[1.3rem] flex flex-col gap-1">
+              <li className="text-white/90 text-[1.375rem] md:text-[1.5rem] flex flex-col gap-1.5">
                 신안산대학교 졸업
-                <span className="text-base text-[#67dbfe]">
+                <span className="text-[1.125rem] md:text-[1.25rem] text-[#67dbfe]">
                   (2015.03 ~ 2020.02)
                 </span>
               </li>
@@ -190,17 +190,17 @@ function AboutAnimatedBlocks({ cardBg, pointColor }) {
           <div
             className={`${cardBg} flex-1 rounded-3xl p-[2.8rem] md:p-[3.4rem] shadow-lg border border-white/10 flex flex-col`}
           >
-            <h3 className="text-[2rem] font-bold mb-10 text-[#81ecd8] tracking-wide">
+            <h3 className="text-[1.75rem] md:text-[2rem] font-bold mb-10 text-[#81ecd8] tracking-wide">
               자격증
             </h3>
             <ul className="[&_li]:mb-7 [&_li:last-child]:mb-0">
-              <li className="text-white/90 text-[1.3rem] flex flex-col gap-1">
+              <li className="text-white/90 text-[1.375rem] md:text-[1.5rem] flex flex-col gap-1.5">
                 웹디자인기능사
-                <span className="text-base text-[#67dbfe]">(2023.12)</span>
+                <span className="text-[1.125rem] md:text-[1.25rem] text-[#67dbfe]">(2023.12)</span>
               </li>
-              <li className="text-white/90 text-[1.3rem] flex flex-col gap-1">
+              <li className="text-white/90 text-[1.375rem] md:text-[1.5rem] flex flex-col gap-1.5">
                 컴퓨터활용능력 2급
-                <span className="text-base text-[#67dbfe]">(2020.08)</span>
+                <span className="text-[1.125rem] md:text-[1.25rem] text-[#67dbfe]">(2020.08)</span>
               </li>
             </ul>
           </div>

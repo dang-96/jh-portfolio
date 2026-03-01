@@ -158,13 +158,13 @@ function Works() {
               }}
               className={`${cardBg} rounded-3xl p-6 sm:p-8 shadow-xl transition-shadow hover:shadow-2xl`}
             >
-              <span className="text-[1.2rem] sm:text-[1.35rem] text-[#67dbfe] font-medium block mb-2">
+              <span className="text-[1.125rem] md:text-[1.25rem] text-[#67dbfe] font-medium block mb-2">
                 {item.subTitle}
               </span>
-              <strong className="text-[1.5rem] sm:text-[1.85rem] font-bold text-white/95 block mb-2 leading-snug">
+              <strong className="text-[1.5rem] md:text-[1.625rem] font-bold text-white/95 block mb-2 leading-snug">
                 {item.title}
               </strong>
-              <p className="text-[1.1rem] sm:text-[1.2rem] text-white/75 leading-relaxed">
+              <p className="text-[1.25rem] md:text-[1.375rem] text-white/75 leading-relaxed">
                 {item.desc}
               </p>
             </li>

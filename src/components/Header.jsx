@@ -57,7 +57,7 @@ function Header() {
               href={item.href}
               onClick={closeMenu}
               className={clsx(
-                "text-3xl md:text-4xl font-bold py-3 transition-colors",
+                "text-[1.625rem] md:text-[1.875rem] font-bold py-3 transition-colors",
                 isActive ? "text-[#67dbfe]" : "text-white hover:text-[#7dd6ea]",
               )}
             >
@@ -91,7 +91,7 @@ function Header() {
         <h1 className="flex items-center h-full py-2">
           <a
             href="/"
-            className="leading-[1.25] pb-4 pt-0.5 text-2xl sm:text-3xl lg:text-[3.2rem] font-extrabold tracking-tight transition-colors hover:opacity-90 block"
+            className="leading-[1.25] pb-4 pt-0.5 text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] font-extrabold tracking-tight transition-colors hover:opacity-90 block"
             style={{
               background:
                 "linear-gradient(110deg, #ffe980 20%, #7dd6ea 65%, #6ee7b7 100%)",
@@ -113,7 +113,7 @@ function Header() {
                   <a
                     href={item.href}
                     className={clsx(
-                      "text-xl xl:text-[1.5rem] 2xl:text-[1.75rem] font-bold relative focus:outline-none transition-colors duration-200",
+                      "text-[1.25rem] xl:text-[1.375rem] 2xl:text-[1.5rem] font-bold relative focus:outline-none transition-colors duration-200",
                       "after:content-[''] after:block after:absolute after:left-0 after:-bottom-1 after:h-[2.5px] after:origin-left after:transition-transform after:duration-300",
                       isActive
                         ? "text-[#67dbfe] after:w-full after:scale-x-100 after:bg-[#67dbfe]"

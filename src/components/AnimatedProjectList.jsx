@@ -49,14 +49,14 @@ function AnimatedProjectList({ projects, cardBg }) {
           </a>
           <div className="flex flex-col gap-2 p-7 sm:p-8 pb-9 flex-1">
             <div className="flex items-center gap-4 mb-2">
-              <h4 className="text-[2rem] font-bold text-[#7dd6ea]">
+              <h4 className="text-[1.75rem] md:text-[2rem] font-bold text-[#7dd6ea]">
                 {item.title}
               </h4>
               <div className="flex items-center gap-3">
                 <a
                   href={item.siteUrl}
                   className="
-                    text-sm px-4 py-1 rounded-full font-semibold border border-[#67dbfe]/60
+                    text-[1.0625rem] md:text-[1.125rem] px-4 py-1 rounded-full font-semibold border border-[#67dbfe]/60
                     bg-white/80 text-[#212c24] shadow hover:bg-[#67dbfe]/60 hover:text-[#111b21] hover:border-[#67dbfe] transition-all
                   "
                   target="_blank"
@@ -67,7 +67,7 @@ function AnimatedProjectList({ projects, cardBg }) {
                 <a
                   href={item.notionUrl}
                   className="
-                    text-sm px-4 py-1 rounded-full font-semibold border border-[#b8a3ee]/60
+                    text-[1.0625rem] md:text-[1.125rem] px-4 py-1 rounded-full font-semibold border border-[#b8a3ee]/60
                     bg-white/80 text-[#5c5d7b] shadow hover:bg-[#b8a3ee]/80 hover:text-[#2b2636] hover:border-[#b8a3ee] transition-all
                   "
                   target="_blank"
@@ -77,7 +77,7 @@ function AnimatedProjectList({ projects, cardBg }) {
                 </a>
               </div>
             </div>
-            <p className="text-lg text-white/90 font-normal leading-relaxed mt-1">
+            <p className="text-[1.25rem] md:text-[1.375rem] text-white/90 font-normal leading-relaxed mt-1">
               {item.content}
             </p>
           </div>
