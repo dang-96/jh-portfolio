@@ -1,5 +1,4 @@
 import About from "./sections/About";
-import Contact from "./sections/Contact";
 import Project from "./sections/Project";
 import Visual from "./sections/Visual";
 import Works from "./sections/Works";
@@ -11,7 +10,6 @@ function Main() {
       <About />
       <Project />
       <Works />
-      <Contact />
     </main>
   );
 }

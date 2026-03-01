@@ -14,16 +14,28 @@
   scroll-behavior: smooth;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 html,
 body {
+  /* 한글: Noto Sans KR, 영어/숫자: 시스템 폰트 (모바일에서 영어 깨짐 방지) */
   font-family:
-    "Noto Sans KR", "맑은고딕", "Malgun Gothic", malgun, "돋움", Dotum, "굴림",
-    Gulim, "AppleSDGothicNeo-Light", AppleGothic, Helvetica, Arial,
-    "HelveticaNeue-Light", "sans-serif-light", sans-serif;
+    "Noto Sans KR",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Apple SD Gothic Neo",
+    "맑은 고딕",
+    "Malgun Gothic",
+    sans-serif;
   font-size: 62.5%;
   font-weight: 400;
   line-height: normal;
   color: #464646;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -134,9 +146,11 @@ button,
 textarea,
 select {
   font-family:
-    "Noto Sans KR", "맑은고딕", "Malgun Gothic", malgun, "돋움", Dotum, "굴림",
-    Gulim, "AppleSDGothicNeo-Light", AppleGothic, Helvetica, Arial,
-    "HelveticaNeue-Light", "sans-serif-light", sans-serif;
+    "Noto Sans KR",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Apple SD Gothic Neo",
+    sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #464646;
@@ -188,27 +202,4 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator::before {
   background-repeat: no-repeat;
 }
 
-@font-face {
-  font-family: "Noto Sans KR";
-  font-style: normal;
-  font-weight: 700;
-  src: url("../fonts/NotoSans-Bold.svg#NotoSans-Bold") format("svg");
-}
-@font-face {
-  font-family: "Noto Sans KR";
-  font-style: normal;
-  font-weight: 500;
-  src: url("../fonts/NotoSans-Medium.svg#NotoSans-Medium") format("svg");
-}
-@font-face {
-  font-family: "Noto Sans KR";
-  font-style: normal;
-  font-weight: 400;
-  src: url("../fonts/NotoSans-Regular.svg#NotoSans-Regular") format("svg");
-}
-@font-face {
-  font-family: "Noto Sans KR";
-  font-style: normal;
-  font-weight: 300;
-  src: url("../fonts/NotoSans-Light.svg#NotoSans-Light") format("svg");
-}
+/* Noto Sans KR: Google Fonts CDN 사용 (모바일에서 SVG 폰트 미지원으로 인한 깨짐 방지) */
