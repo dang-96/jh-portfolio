@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -7,6 +7,16 @@ gsap.registerPlugin(ScrollTrigger);
 const WORK_LIST = [
   {
     title: "달달영어 플랫폼",
+    subTitle: "(주)언플러",
+    desc: "퍼블리싱 (2025.09 ~ 2026.02)",
+  },
+  {
+    title: "달달영어 기초지단테스트 튜토리얼",
+    subTitle: "(주)언플러",
+    desc: "퍼블리싱 (2025.09 ~ 2026.02)",
+  },
+  {
+    title: "달달영어 문항",
     subTitle: "(주)언플러",
     desc: "퍼블리싱 (2025.09 ~ 2026.02)",
   },
@@ -47,11 +57,25 @@ const WORK_LIST = [
   },
 ];
 
+const TAB_ALL = "전체";
+
 function Works() {
   const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const cardRefs = useRef([]);
+  const [activeTab, setActiveTab] = useState(TAB_ALL);
 
+  const companies = useMemo(
+    () => [...new Set(WORK_LIST.map((w) => w.subTitle))],
+    [],
+  );
+  const tabs = useMemo(() => [TAB_ALL, ...companies], [companies]);
+  const filteredList =
+    activeTab === TAB_ALL
+      ? WORK_LIST
+      : WORK_LIST.filter((w) => w.subTitle === activeTab);
+
+  // 제목 애니메이션: 마운트 시 한 번만
   useEffect(() => {
     const section = sectionRef.current;
     const title = titleRef.current;
@@ -73,9 +97,21 @@ function Works() {
           },
         },
       );
+    }, section);
 
-      cardRefs.current.forEach((el) => {
-        if (!el) return;
+    return () => ctx.revert();
+  }, []);
+
+  // 카드 애니메이션: 탭 전환 시 해당 탭의 카드만
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const cards = cardRefs.current.filter(Boolean);
+    if (cards.length === 0) return;
+
+    const ctx = gsap.context(() => {
+      cards.forEach((el) => {
         gsap.fromTo(
           el,
           { opacity: 0, y: 50 },
@@ -95,7 +131,7 @@ function Works() {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, [activeTab]);
 
   const cardBg =
     "bg-white border border-gray-200 rounded-3xl p-4 sm:p-5 shadow-xl dark:bg-gradient-to-br dark:from-[#22272e] dark:to-[#232d28] dark:border-white/10";
@@ -131,19 +167,45 @@ function Works() {
         >
           WORKS
         </h2>
-        {/* <a
-          href="https://www.notion.so/1e3426fffa2b80d1ba1ae25added40d2"
-          target="_blank"
-          rel="noreferrer"
-          className="block text-center text-[22px] font-bold py-3 px-8 rounded-full bg-gradient-to-r from-[#67dbfe] to-[#6ee7b7] text-[#182025] shadow-lg hover:opacity-90 transition-opacity w-fit mx-auto mb-14 md:mb-20"
-        >
-          경력기술서
-        </a> */}
 
-        <ul className="flex flex-col gap-2 md:gap-3">
-          {WORK_LIST.map((item, index) => (
+        <div
+          role="tablist"
+          aria-label="회사별 작업 목록"
+          className="flex flex-wrap justify-center gap-2 mb-6 md:mb-8"
+        >
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === tab}
+              aria-controls="works-list"
+              id={`tab-${tab === TAB_ALL ? "all" : tab.replace(/[^\w가-힣]/g, "-")}`}
+              className={`min-w-[80px] py-2.5 px-4 rounded-xl text-[14px] font-semibold transition-all duration-200 ease-out focus-visible:ring-2 focus-visible:ring-[var(--point)] focus-visible:ring-offset-2 focus-visible:outline-none ${
+                activeTab === tab
+                  ? "bg-point text-[#0f172a] shadow-md"
+                  : "bg-white dark:bg-white/10 text-secondary border border-gray-200 dark:border-white/20 hover:border-[var(--point)]/50 hover:text-primary"
+              }`}
+              onClick={() => setActiveTab(tab)}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        <ul
+          id="works-list"
+          role="tabpanel"
+          aria-labelledby={
+            activeTab === TAB_ALL
+              ? "tab-all"
+              : `tab-${activeTab.replace(/[^\w가-힣]/g, "-")}`
+          }
+          className="flex flex-col gap-2 md:gap-3"
+        >
+          {filteredList.map((item, index) => (
             <li
-              key={index}
+              key={`${item.subTitle}-${item.title}`}
               ref={(el) => {
                 cardRefs.current[index] = el;
               }}
