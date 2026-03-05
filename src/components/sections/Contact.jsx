@@ -37,7 +37,7 @@ function ContactAnimatedContent() {
           transform: trail[0].y.to((v) => `translateY(${v}px)`),
           letterSpacing: "-0.5px",
         }}
-        className="text-point text-center text-[clamp(28px,5vw,56px)] font-extrabold mb-6 tracking-tight md:whitespace-nowrap"
+        className="text-primary text-center text-[clamp(28px,5vw,56px)] font-extrabold mb-6 tracking-tight md:whitespace-nowrap"
       >
         {CONTACT_ITEMS[0]}
       </animated.p>
@@ -49,7 +49,7 @@ function ContactAnimatedContent() {
           transform: trail[1].y.to((v) => `translateY(${v}px)`),
           letterSpacing: "-0.5px",
         }}
-        className={`text-point ${MAIL_GLOW} ${MAIL_HOVER} select-all text-[clamp(20px,4vw,40px)] sm:text-[clamp(26px,5vw,56px)] font-extrabold text-center tracking-tight flex items-center justify-center whitespace-nowrap box-border`}
+        className={`text-primary ${MAIL_GLOW} ${MAIL_HOVER} select-all text-[clamp(20px,4vw,40px)] sm:text-[clamp(26px,5vw,56px)] font-extrabold text-center tracking-tight flex items-center justify-center whitespace-nowrap box-border`}
         tabIndex={0}
         aria-label="이메일로 연락하기"
       >

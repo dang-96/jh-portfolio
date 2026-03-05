@@ -33,7 +33,7 @@ function ScrollToTop() {
           "bg-white dark:bg-[#22272e] border border-gray-200 dark:border-white/10",
           "text-gray-600 dark:text-white/80 hover:text-point",
           "shadow-lg hover:scale-110 transition-all duration-300",
-          "focus:outline-none focus:ring-2 focus:ring-[var(--point)] focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-[#181e26]",
+          "focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--point)] focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 dark:focus-visible:ring-offset-[#181e26]",
         )}
       >
         {theme === "dark" ? (
@@ -57,7 +57,7 @@ function ScrollToTop() {
           "flex items-center justify-center",
           "bg-point text-white",
           "shadow-lg hover:opacity-90 hover:scale-110",
-          "focus:outline-none focus:ring-2 focus:ring-[var(--point)] focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-[#181e26]",
+          "focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--point)] focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 dark:focus-visible:ring-offset-[#181e26]",
           "transition-all duration-300 ease-out",
           visible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
         )}

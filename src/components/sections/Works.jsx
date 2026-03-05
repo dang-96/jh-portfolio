@@ -126,7 +126,7 @@ function Works() {
       <div className="relative z-10 w-full max-w-7xl xl:max-w-[1400px] mx-auto">
         <h2
           ref={titleRef}
-          className="text-point font-extrabold text-[clamp(28px,5vw,52px)] leading-tight tracking-tighter text-center mb-4 md:mb-6"
+          className="text-primary font-extrabold text-[clamp(28px,5vw,52px)] leading-tight tracking-tighter text-center mb-4 md:mb-6"
           style={{ letterSpacing: "-1px" }}
         >
           WORKS
@@ -152,7 +152,7 @@ function Works() {
               <span className="text-subtitle text-[14px] md:text-[16px] font-medium block mb-1">
                 {item.subTitle}
               </span>
-              <strong className="text-point text-[14px] md:text-[16px] font-bold block mb-1 leading-snug">
+              <strong className="text-primary text-[14px] md:text-[16px] font-bold block mb-1 leading-snug">
                 {item.title}
               </strong>
               <p className="text-detail text-[14px] md:text-[16px] leading-relaxed">

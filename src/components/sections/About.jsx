@@ -62,8 +62,8 @@ function AboutAnimatedContent({ cardBg }) {
         }}
         className={`${cardBg} flex flex-col-reverse md:flex-row md:items-center justify-center rounded-3xl p-5 md:p-8 gap-8 mb-16 w-full`}
       >
-        <div className="flex-1">
-          <h3 className="text-point font-bold text-[22px] md:text-[26px] mb-3 leading-[1.22]">
+        <div className="flex-1 md:flex-[2] md:min-w-0">
+          <h3 className="text-primary font-bold text-[22px] md:text-[26px] mb-3 leading-[1.22]">
             염정훈{" "}
             <span className="text-subtitle text-[14px] md:text-[16px] ml-2">
               | 1996.02.25 | 웹 퍼블리셔
@@ -79,24 +79,20 @@ function AboutAnimatedContent({ cardBg }) {
             </strong>
             를 활용해 정확하고 효율적인 UI 구현을 지향하며,
             <br />
-            <strong className="text-point">
-              반응형 웹과 크로스 브라우징
-            </strong>
+            <strong className="text-point">반응형 웹과 크로스 브라우징</strong>
             으로 다양한 디바이스에 일관된 경험을 제공합니다.
           </p>
           <p className="text-detail text-[14px] md:text-[16px] mb-4 leading-[2]">
-              <strong className="text-point">SCSS, Tailwind</strong> 등 도구를
+            <strong className="text-point">SCSS, Tailwind</strong> 등 도구를
             활용해 유지보수성을 고려한 스타일 구조를 설계하고,
             <strong className="text-point"> 디자이너와의 협업</strong>을 통해
             시각적 완성도를 높였습니다.
           </p>
           <p className="text-detail text-[14px] md:text-[16px] mb-6 leading-[2]">
-              최근에는{" "}
-            <strong className="text-point">
-              React, TypeScript, Next.js
-            </strong>
-            를 학습하며 프론트엔드 개발 영역까지 확장하여, 더욱 폭넓은 UI/UX
-            구현이 가능합니다.
+            최근에는{" "}
+            <strong className="text-point">React, TypeScript, Next.js</strong>를
+            학습하며 프론트엔드 개발 영역까지 확장하여, 더욱 폭넓은 UI/UX 구현이
+            가능합니다.
           </p>
           <div className="flex flex-wrap items-center gap-4 mt-4">
             <a
@@ -123,7 +119,7 @@ function AboutAnimatedContent({ cardBg }) {
             </a>
           </div>
         </div>
-        <div className="flex-1 flex justify-center items-center">
+        <div className="flex-1 md:flex-1 flex justify-center items-center shrink-0">
           <div
             className="w-[176px] h-[176px] md:w-[220px] md:h-[220px] rounded-full shadow-lg bg-[#eee] border-4 border-[#88e3e1]/10 bg-cover bg-center bg-no-repeat relative
               after:content-[''] after:absolute after:inset-0 after:rounded-full after:ring-2 after:ring-[var(--point)]/30"
@@ -146,12 +142,12 @@ function AboutAnimatedContent({ cardBg }) {
         {/* Work Experience */}
         <div
           className={`${cardBg} flex-1 rounded-3xl p-5 md:p-6 shadow-lg border border-gray-200 dark:border-white/10 flex flex-col`}
-          >
-            <h3 className="text-point text-[18px] md:text-[22px] font-bold mb-5 tracking-wide">
-              WORK EXPERIENCE
-            </h3>
-            <ul className="[&_li]:mb-3 [&_li:last-child]:mb-0">
-              <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
+        >
+          <h3 className="text-primary text-[18px] md:text-[22px] font-bold mb-5 tracking-wide">
+            WORK EXPERIENCE
+          </h3>
+          <ul className="[&_li]:mb-3 [&_li:last-child]:mb-0">
+            <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
               (주)언플러
               <span className="text-subtitle text-[14px] md:text-[16px]">
                 (2025.09 ~ 2026.02) 웹 퍼블리셔(사원)
@@ -168,15 +164,15 @@ function AboutAnimatedContent({ cardBg }) {
         {/* SKILL */}
         <div
           className={`${cardBg} flex-1 rounded-3xl p-5 md:p-6 shadow-lg border border-gray-200 dark:border-white/10 flex flex-col`}
-          >
-            <h3 className="text-point text-[18px] md:text-[22px] font-bold mb-5 tracking-wide">
-              SKILL
-            </h3>
-            <ul className="flex flex-wrap gap-2">
-              {SKILLS.map((skill) => (
-                <li
-                  key={skill}
-                  className="text-point text-[12px] md:text-[13px] py-1 px-3 rounded-full bg-gray-100 dark:bg-white/10 font-semibold tracking-wider border border-gray-200 dark:border-white/10 transition-all hover:opacity-90"
+        >
+          <h3 className="text-primary text-[18px] md:text-[22px] font-bold mb-5 tracking-wide">
+            SKILL
+          </h3>
+          <ul className="flex flex-wrap gap-2">
+            {SKILLS.map((skill) => (
+              <li
+                key={skill}
+                className="text-primary text-[12px] md:text-[13px] py-1 px-3 rounded-full bg-gray-100 dark:bg-white/10 font-semibold tracking-wider border border-gray-200 dark:border-white/10 transition-all hover:opacity-90"
               >
                 {skill}
               </li>
@@ -196,25 +192,25 @@ function AboutAnimatedContent({ cardBg }) {
         {/* EDUCATION */}
         <div
           className={`${cardBg} flex-1 rounded-3xl p-5 md:p-6 shadow-lg border border-gray-200 dark:border-white/10 flex flex-col`}
-          >
-            <h3 className="text-point text-[18px] md:text-[22px] font-bold mb-5 tracking-wide">
-              EDUCATION
-            </h3>
-            <ul className="[&_li]:mb-3 [&_li:last-child]:mb-0">
-              <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
-                코드잇 프론트엔드 스프린트 수료
+        >
+          <h3 className="text-primary text-[18px] md:text-[22px] font-bold mb-5 tracking-wide">
+            EDUCATION
+          </h3>
+          <ul className="[&_li]:mb-3 [&_li:last-child]:mb-0">
+            <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
+              코드잇 프론트엔드 스프린트 수료
               <span className="text-subtitle text-[14px] md:text-[16px]">
                 (2024.06 ~ 2024.11)
               </span>
             </li>
-              <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
-                라인컴퓨터아트학원 수료
+            <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
+              라인컴퓨터아트학원 수료
               <span className="text-subtitle text-[14px] md:text-[16px]">
                 (2021.06 ~ 2021.11)
               </span>
             </li>
-              <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
-                신안산대학교 졸업
+            <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
+              신안산대학교 졸업
               <span className="text-subtitle text-[14px] md:text-[16px]">
                 (2015.03 ~ 2020.02)
               </span>
@@ -224,19 +220,19 @@ function AboutAnimatedContent({ cardBg }) {
         {/* Certificate */}
         <div
           className={`${cardBg} flex-1 rounded-3xl p-5 md:p-6 shadow-lg border border-gray-200 dark:border-white/10 flex flex-col`}
-          >
-            <h3 className="text-point text-[18px] md:text-[22px] font-bold mb-5 tracking-wide">
-              자격증
-            </h3>
-            <ul className="[&_li]:mb-3 [&_li:last-child]:mb-0">
-              <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
-                웹디자인기능사
+        >
+          <h3 className="text-primary text-[18px] md:text-[22px] font-bold mb-5 tracking-wide">
+            자격증
+          </h3>
+          <ul className="[&_li]:mb-3 [&_li:last-child]:mb-0">
+            <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
+              웹디자인기능사
               <span className="text-subtitle text-[14px] md:text-[16px]">
                 (2023.12)
               </span>
             </li>
-              <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
-                컴퓨터활용능력 2급
+            <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
+              컴퓨터활용능력 2급
               <span className="text-subtitle text-[14px] md:text-[16px]">
                 (2020.08)
               </span>
@@ -285,9 +281,7 @@ function About() {
 
       <div className="relative z-10 w-full max-w-7xl xl:max-w-[1400px] mx-auto flex flex-col items-center justify-center py-8 sm:py-10">
         {inView ? (
-          <AboutAnimatedContent
-            cardBg={CARD_BG}
-          />
+          <AboutAnimatedContent cardBg={CARD_BG} />
         ) : (
           <div
             className="min-h-[400px]"

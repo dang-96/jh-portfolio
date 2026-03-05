@@ -10,7 +10,7 @@ function Project() {
 
   const publicUrl = process.env.PUBLIC_URL || "";
   const cardBg =
-    "bg-white border border-gray-200 shadow-xl dark:bg-gradient-to-br dark:from-[#22272e] dark:to-[#232d28] dark:bg-opacity-90 dark:border-white/10";
+    "bg-white/80 dark:bg-[#22272e]/75 backdrop-blur-md border border-gray-200/90 dark:border-white/10 shadow-xl shadow-gray-200/50 dark:shadow-none";
   const projects = [
     {
       id: "pokemon",
@@ -82,7 +82,7 @@ function Project() {
 
       <div className="relative z-10 w-full max-w-7xl xl:max-w-[1400px] mx-auto">
         <h2
-          className="text-point font-extrabold text-[clamp(28px,5vw,52px)] leading-tight tracking-tighter text-center mb-10"
+          className="text-primary font-extrabold text-[clamp(28px,5vw,52px)] leading-tight tracking-tighter text-center mb-10"
           style={{ letterSpacing: "-1px" }}
         >
           PROJECT

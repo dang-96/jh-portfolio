@@ -47,7 +47,7 @@ function AnimatedProjectList({ projects, cardBg }) {
           </a>
           <div className="flex flex-col gap-2 p-4 sm:p-5 pb-4 flex-1">
             <div className="flex items-center gap-4 mb-2">
-              <h4 className="text-point text-[18px] md:text-[22px] font-bold">
+              <h4 className="text-primary text-[18px] md:text-[22px] font-bold">
                 {item.title}
               </h4>
               <div className="flex items-center gap-3">
