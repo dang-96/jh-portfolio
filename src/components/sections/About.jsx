@@ -96,14 +96,18 @@ function AboutAnimatedContent({ cardBg }) {
           </p>
           <div className="flex flex-wrap items-center gap-4 mt-4">
             <a
-              className="text-point inline-flex items-center gap-3 text-[14px] md:text-[16px] font-bold relative group
-                  hover:underline underline-offset-4 transition-all duration-200 ease-out hover:translate-x-0.5"
+              className="text-primary inline-flex items-center gap-1.5 text-[14px] md:text-[16px] font-bold relative group pb-1
+                  before:content-[''] before:absolute before:left-0 before:bottom-0 before:w-full before:h-[2px] before:bg-secondary
+                  after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-point after:w-0 after:transition-all after:duration-300 after:ease-out
+                  hover:text-point hover:after:w-full transition-all duration-200 ease-out hover:translate-x-0.5"
               href={NOTION_URL}
               target="_blank"
               rel="noreferrer"
             >
               이력서 바로가기
-              <i className="fa-solid fa-circle-chevron-right text-[1.1em] transition-transform duration-200 ease-out group-hover:translate-x-1" />
+              <svg className="w-4 h-4 shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z" />
+              </svg>
             </a>
             <a
               href={GITHUB_URL}
