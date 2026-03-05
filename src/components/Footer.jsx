@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer
-      className="relative w-full py-12 md:py-14 px-4 md:px-8 lg:px-[3rem] border-t border-white/5 overflow-hidden"
+      className="relative w-full py-6 md:py-8 px-4 md:px-8 lg:px-12 border-t border-white/5 overflow-hidden"
       style={{
         background: "linear-gradient(120deg, #191c1f 0%, #22272e 100%)",
       }}
@@ -21,7 +21,7 @@ function Footer() {
               href="https://github.com/JeoungHun"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-white/80 text-base md:text-[1.6rem] font-semibold hover:text-[#67dbfe] transition-colors duration-200"
+              className="flex items-center gap-2 text-white/80 text-[13px] md:text-[18px] font-semibold hover:text-point transition-colors duration-200"
               aria-label="깃허브"
             >
               <svg
@@ -42,7 +42,7 @@ function Footer() {
               href="https://www.notion.so/1e3426fffa2b80d1ba1ae25added40d2"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-white/80 text-base md:text-[1.6rem] font-semibold hover:text-[#ffe980] transition-colors duration-200"
+              className="flex items-center gap-2 text-white/80 text-[13px] md:text-[18px] font-semibold hover:text-point transition-colors duration-200"
               aria-label="노션 포트폴리오"
             >
               <svg
@@ -63,7 +63,7 @@ function Footer() {
           </li>
         </ul>
         <p
-          className="text-sm md:text-[1.4rem] font-normal"
+          className="text-[11px] md:text-[14px] font-normal"
           style={{ color: "rgba(255,255,255,0.5)" }}
         >
           © 2024 jeoung-hun.com

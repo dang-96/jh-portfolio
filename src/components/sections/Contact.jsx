@@ -12,21 +12,13 @@ const TRAIL_FROM = { opacity: 0, y: 28 };
 const TRAIL_TO = { opacity: 1, y: 0 };
 const TRAIL_CONFIG = { tension: 120, friction: 26 };
 
-const TEXT_GRAD_STYLE = {
-  background:
-    "linear-gradient(110deg, #ffe980 18%, #7dd6ea 68%, #6ee7b7 100%)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  textShadow: "0 4px 30px rgba(61,228,227,0.13)",
-  letterSpacing: "-0.5px",
-};
 
 const MAIL_HOVER =
   "transition-all duration-200 transform hover:scale-105 hover:shadow-[0_6px_28px_0_rgba(255,233,128,0.10)] cursor-pointer";
 const MAIL_GLOW =
-  "bg-gradient-to-r from-[#ffe9801b] to-[#7dd6ea1c] py-6 px-6 sm:px-8 rounded-xl shadow-xl border border-white/5 w-full max-w-full overflow-visible";
+  "py-3 px-4 sm:px-4 rounded-xl shadow-xl border border-white/10 w-full max-w-full overflow-visible bg-white/5 hover:bg-white/10 transition-colors";
 const CTA_BTN =
-  "mt-14 px-10 py-4 rounded-full bg-gradient-to-br from-[#68ede3] to-[#ffe880] text-[#292c23] font-bold text-2xl shadow-lg hover:from-[#ffe880]/90 hover:to-[#68ede3]/70 hover:scale-105 transition-all duration-150 focus:ring-2 focus:ring-[#68ede3] focus:scale-105";
+  "mt-8 px-5 py-2 rounded-full bg-point text-[#0f172a] font-bold text-[18px] shadow-lg hover:opacity-90 hover:scale-105 transition-all duration-150 focus:ring-2 focus:ring-[var(--point)] focus:ring-offset-2 focus:ring-offset-[#22272e] focus:scale-105";
 
 /** inView 시에만 마운트 → to 고정으로 스택 오버플로우 방지 */
 function ContactAnimatedContent() {
@@ -43,9 +35,9 @@ function ContactAnimatedContent() {
         style={{
           opacity: trail[0].opacity,
           transform: trail[0].y.to((v) => `translateY(${v}px)`),
-          ...TEXT_GRAD_STYLE,
+          letterSpacing: "-0.5px",
         }}
-        className="text-center text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold mb-12 tracking-tight md:whitespace-nowrap"
+        className="text-point text-center text-[clamp(28px,5vw,56px)] font-extrabold mb-6 tracking-tight md:whitespace-nowrap"
       >
         {CONTACT_ITEMS[0]}
       </animated.p>
@@ -55,9 +47,9 @@ function ContactAnimatedContent() {
         style={{
           opacity: trail[1].opacity,
           transform: trail[1].y.to((v) => `translateY(${v}px)`),
-          ...TEXT_GRAD_STYLE,
+          letterSpacing: "-0.5px",
         }}
-        className={`${MAIL_GLOW} ${MAIL_HOVER} select-all text-[clamp(1.8rem,5vw,4rem)] sm:text-[clamp(2.4rem,6vw,5.5rem)] font-extrabold text-center tracking-tight flex items-center justify-center whitespace-nowrap box-border`}
+        className={`text-point ${MAIL_GLOW} ${MAIL_HOVER} select-all text-[clamp(20px,4vw,40px)] sm:text-[clamp(26px,5vw,56px)] font-extrabold text-center tracking-tight flex items-center justify-center whitespace-nowrap box-border`}
         tabIndex={0}
         aria-label="이메일로 연락하기"
       >
@@ -69,7 +61,7 @@ function ContactAnimatedContent() {
           opacity: trail[2].opacity,
           transform: trail[2].y.to((v) => `translateY(${v}px)`),
         }}
-        className="text-[clamp(1.3rem,3.5vw,2.1rem)] text-white/80 text-center mt-12 mb-5 md:whitespace-nowrap"
+        className="text-detail text-[clamp(16px,2.8vw,24px)] text-center mt-6 mb-2 md:whitespace-nowrap"
       >
         {CONTACT_ITEMS[2]}
       </animated.p>

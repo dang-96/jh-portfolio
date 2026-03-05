@@ -98,13 +98,13 @@ function Works() {
   }, []);
 
   const cardBg =
-    "bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-xl dark:bg-gradient-to-br dark:from-[#22272e] dark:to-[#232d28] dark:border-white/10";
+    "bg-white border border-gray-200 rounded-3xl p-4 sm:p-5 shadow-xl dark:bg-gradient-to-br dark:from-[#22272e] dark:to-[#232d28] dark:border-white/10";
 
   return (
     <section
       ref={sectionRef}
       id="works-section"
-      className="section-works relative min-h-screen py-[8rem] px-4 sm:px-6 lg:px-10 overflow-hidden"
+      className="section-works relative min-h-screen py-16 px-4 sm:px-6 lg:px-10 overflow-hidden"
     >
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
@@ -126,15 +126,8 @@ function Works() {
       <div className="relative z-10 w-full max-w-7xl xl:max-w-[1400px] mx-auto">
         <h2
           ref={titleRef}
-          className="font-extrabold text-[clamp(3rem,7vw,5rem)] leading-tight tracking-tighter text-center mb-10 md:mb-14"
-          style={{
-            background:
-              "linear-gradient(110deg, #ffe980 25%, #7dd6ea 65%, #6ee7b7 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            textShadow: "0 6px 32px rgba(61,228,227,0.10)",
-            letterSpacing: "-1px",
-          }}
+          className="text-point font-extrabold text-[clamp(28px,5vw,52px)] leading-tight tracking-tighter text-center mb-4 md:mb-6"
+          style={{ letterSpacing: "-1px" }}
         >
           WORKS
         </h2>
@@ -142,12 +135,12 @@ function Works() {
           href="https://www.notion.so/1e3426fffa2b80d1ba1ae25added40d2"
           target="_blank"
           rel="noreferrer"
-          className="block text-center text-[1.35rem] font-bold py-3 px-8 rounded-full bg-gradient-to-r from-[#67dbfe] to-[#6ee7b7] text-[#182025] shadow-lg hover:opacity-90 transition-opacity w-fit mx-auto mb-14 md:mb-20"
+          className="block text-center text-[22px] font-bold py-3 px-8 rounded-full bg-gradient-to-r from-[#67dbfe] to-[#6ee7b7] text-[#182025] shadow-lg hover:opacity-90 transition-opacity w-fit mx-auto mb-14 md:mb-20"
         >
           경력기술서
         </a> */}
 
-        <ul className="flex flex-col gap-6 md:gap-8">
+        <ul className="flex flex-col gap-2 md:gap-3">
           {WORK_LIST.map((item, index) => (
             <li
               key={index}
@@ -156,13 +149,13 @@ function Works() {
               }}
               className={`${cardBg} transition-shadow hover:shadow-2xl`}
             >
-              <span className="text-[1.125rem] md:text-[1.25rem] text-[#0d9488] dark:text-[#67dbfe] font-medium block mb-2">
+              <span className="text-subtitle text-[14px] md:text-[16px] font-medium block mb-1">
                 {item.subTitle}
               </span>
-              <strong className="text-[1.5rem] md:text-[1.625rem] font-bold text-gray-900 dark:text-white/95 block mb-2 leading-snug">
+              <strong className="text-point text-[14px] md:text-[16px] font-bold block mb-1 leading-snug">
                 {item.title}
               </strong>
-              <p className="text-[1.25rem] md:text-[1.375rem] text-gray-600 dark:text-white/75 leading-relaxed">
+              <p className="text-detail text-[14px] md:text-[16px] leading-relaxed">
                 {item.desc}
               </p>
             </li>

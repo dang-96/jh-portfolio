@@ -42,7 +42,7 @@ function Header() {
   const mobileMenuOverlay = (
     <div
       className={clsx(
-        "lg:hidden fixed left-0 right-0 bottom-0 top-[4.2rem] md:top-[5.5rem] z-[999] transition-opacity duration-300",
+        "lg:hidden fixed left-0 right-0 bottom-0 top-[48px] md:top-[56px] z-[999] transition-opacity duration-300",
         "bg-gray-100/98 dark:bg-[#181e26]/98 backdrop-blur-xl border-t border-gray-200 dark:border-white/5",
         isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none",
       )}
@@ -57,8 +57,8 @@ function Header() {
               href={item.href}
               onClick={closeMenu}
               className={clsx(
-                "text-[1.625rem] md:text-[1.875rem] font-bold py-3 transition-colors",
-                isActive ? "text-[#67dbfe]" : "text-gray-800 dark:text-white hover:text-[#7dd6ea]",
+                "text-[18px] md:text-[20px] font-bold py-2 transition-colors",
+                isActive ? "text-point" : "text-secondary hover:text-point",
               )}
             >
               {item.text}
@@ -73,24 +73,18 @@ function Header() {
     <header
       className={clsx(
         "fixed top-0 left-0 w-full z-[1000] text-gray-900 dark:text-white transition-all duration-300",
-        "px-4 py-0 md:px-8 lg:px-[3rem]",
+        "px-4 py-0 md:px-8 lg:px-12",
         isScrolled
           ? "bg-white/90 dark:bg-[#181e26]/90 backdrop-blur-xl border-b border-gray-200 dark:border-white/5 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.4)]"
           : "bg-transparent border-b border-transparent dark:border-transparent",
       )}
     >
-      <div className="w-full max-w-[1920px] h-[4.2rem] md:h-[5.5rem] lg:h-[7.2rem] mx-auto flex justify-between items-center select-none">
+      <div className="w-full max-w-[1920px] h-[48px] md:h-[56px] lg:h-[72px] mx-auto flex justify-between items-center select-none">
         <h1 className="flex items-center h-full py-2">
           <a
             href="/"
-            className="leading-[1.25] pb-4 pt-0.5 text-[2rem] sm:text-[2.25rem] lg:text-[2.5rem] font-extrabold tracking-tight transition-colors hover:opacity-90 block"
-            style={{
-              background:
-                "linear-gradient(110deg, #ffe980 20%, #7dd6ea 65%, #6ee7b7 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              letterSpacing: "-0.5px",
-            }}
+            className="text-point leading-[1.25] pb-4 pt-0.5 text-[20px] sm:text-[24px] lg:text-[28px] font-extrabold tracking-tight transition-colors hover:opacity-90 block"
+            style={{ letterSpacing: "-0.5px" }}
           >
             JeoungHun Portfolio
           </a>
@@ -105,11 +99,11 @@ function Header() {
                   <a
                     href={item.href}
                     className={clsx(
-                      "text-[1.25rem] xl:text-[1.375rem] 2xl:text-[1.5rem] font-bold relative focus:outline-none transition-colors duration-200",
-                      "after:content-[''] after:block after:absolute after:left-0 after:-bottom-1 after:h-[2.5px] after:origin-left after:transition-transform after:duration-300",
+                      "text-[14px] xl:text-[16px] 2xl:text-[18px] font-bold relative focus:outline-none transition-colors duration-200",
+                      "after:content-[''] after:block after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:origin-left after:transition-transform after:duration-300",
                       isActive
-                        ? "text-[#67dbfe] after:w-full after:scale-x-100 after:bg-[#67dbfe]"
-                        : "text-gray-600 dark:text-white/80 hover:text-gray-900 dark:hover:text-white after:w-full after:scale-x-0 after:bg-[#67dbfe] hover:after:scale-x-100 focus:after:scale-x-100",
+                        ? "text-point after:w-full after:scale-x-100 after:bg-[var(--point)]"
+                        : "text-secondary hover:text-point after:w-full after:scale-x-0 after:bg-[var(--point)] hover:after:scale-x-100 focus:after:scale-x-100",
                     )}
                     style={{ WebkitTapHighlightColor: "transparent" }}
                   >

@@ -25,14 +25,15 @@ function AnimatedProjectList({ projects, cardBg }) {
           }}
           className={`
             w-full
-            ${cardBg} rounded-3xl shadow-xl
-            flex flex-col items-stretch transition-transform duration-200
-            hover:scale-[1.02] hover:shadow-2xl
+            ${cardBg} rounded-3xl shadow-md shadow-gray-300/60 dark:shadow-xl
+            flex flex-col items-stretch
+            transition-all duration-300 ease-out
+            hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl hover:shadow-gray-400/50 dark:hover:shadow-2xl
           `}
         >
           <a
             href={item.siteUrl}
-            className="block w-full h-[280px] sm:h-[320px] md:h-[340px] rounded-t-3xl overflow-hidden relative group bg-black"
+            className="block w-full h-[240px] sm:h-[280px] md:h-[300px] rounded-t-3xl overflow-hidden relative group bg-gray-100 dark:bg-black"
             target="_blank"
             rel="noreferrer"
             tabIndex={-1}
@@ -40,25 +41,23 @@ function AnimatedProjectList({ projects, cardBg }) {
             <img
               src={item.image}
               alt={item.imageAlt}
-              className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-110"
-              style={{
-                filter:
-                  "brightness(89%) drop-shadow(0 8px 32px rgba(113,216,225,.11))",
-              }}
+              className="project-card-img w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-transparent to-transparent dark:from-black/40 dark:to-transparent pointer-events-none" />
           </a>
-          <div className="flex flex-col gap-2 p-7 sm:p-8 pb-9 flex-1">
+          <div className="flex flex-col gap-2 p-4 sm:p-5 pb-4 flex-1">
             <div className="flex items-center gap-4 mb-2">
-              <h4 className="text-[1.75rem] md:text-[2rem] font-bold text-[#7dd6ea]">
+              <h4 className="text-point text-[18px] md:text-[22px] font-bold">
                 {item.title}
               </h4>
               <div className="flex items-center gap-3">
                 <a
                   href={item.siteUrl}
                   className="
-                    text-[1.0625rem] md:text-[1.125rem] px-4 py-1 rounded-full font-semibold border border-[#67dbfe]/60
-                    bg-white/80 text-[#212c24] shadow hover:bg-[#67dbfe]/60 hover:text-[#111b21] hover:border-[#67dbfe] transition-all
+                    text-[13px] md:text-[14px] px-4 py-1 rounded-full font-semibold border border-[var(--point)]/60
+                    bg-white/80 dark:bg-white/10 text-[var(--text-primary)] shadow
+                    hover:bg-[var(--point)]/20 hover:border-[var(--point)] hover:scale-105 hover:shadow-md
+                    transition-all duration-200 ease-out active:scale-100
                   "
                   target="_blank"
                   rel="noreferrer"
@@ -68,8 +67,10 @@ function AnimatedProjectList({ projects, cardBg }) {
                 <a
                   href={item.githubUrl}
                   className="
-                    text-[1.0625rem] md:text-[1.125rem] px-4 py-1 rounded-full font-semibold border border-[#b8a3ee]/60
-                    bg-white/80 text-[#5c5d7b] shadow hover:bg-[#b8a3ee]/80 hover:text-[#2b2636] hover:border-[#b8a3ee] transition-all
+                    text-[13px] md:text-[14px] px-4 py-1 rounded-full font-semibold border border-[var(--point)]/60
+                    bg-white/80 dark:bg-white/10 text-[var(--text-primary)] shadow
+                    hover:bg-[var(--point)]/20 hover:border-[var(--point)] hover:scale-105 hover:shadow-md
+                    transition-all duration-200 ease-out active:scale-100
                   "
                   target="_blank"
                   rel="noreferrer"
@@ -78,7 +79,7 @@ function AnimatedProjectList({ projects, cardBg }) {
                 </a>
               </div>
             </div>
-            <p className="text-[1.25rem] md:text-[1.375rem] text-gray-700 dark:text-white/90 font-normal leading-relaxed mt-1">
+            <p className="text-detail text-[14px] md:text-[16px] font-normal leading-relaxed mt-1">
               {item.content}
             </p>
           </div>

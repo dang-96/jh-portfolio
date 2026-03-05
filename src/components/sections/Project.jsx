@@ -54,7 +54,7 @@ function Project() {
     <section
       ref={sectionRef}
       id="project-section"
-      className="section-project relative min-h-screen py-[8rem] px-4 sm:px-6 lg:px-10 overflow-hidden"
+      className="section-project relative min-h-screen py-16 px-4 sm:px-6 lg:px-10 overflow-hidden"
     >
       {/* Subtle gradients - visual.jsx 스타일 */}
       <div
@@ -82,15 +82,8 @@ function Project() {
 
       <div className="relative z-10 w-full max-w-7xl xl:max-w-[1400px] mx-auto">
         <h2
-          className="font-extrabold text-[clamp(3rem,7vw,5rem)] leading-tight tracking-tighter text-center mb-20"
-          style={{
-            background:
-              "linear-gradient(110deg,#ffe980 25%,#7dd6ea 65%,#6ee7b7 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            textShadow: "0 6px 32px rgba(61,228,227,0.10)",
-            letterSpacing: "-1px",
-          }}
+          className="text-point font-extrabold text-[clamp(28px,5vw,52px)] leading-tight tracking-tighter text-center mb-10"
+          style={{ letterSpacing: "-1px" }}
         >
           PROJECT
         </h2>
@@ -101,7 +94,7 @@ function Project() {
           />
         ) : (
           <div
-            className="min-h-[420px]"
+            className="min-h-[260px]"
             aria-hidden="true"
           />
         )}
