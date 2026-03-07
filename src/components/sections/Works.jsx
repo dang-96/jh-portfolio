@@ -44,6 +44,7 @@ const WORK_LIST = [
     ],
     image: "works/realinvention.png",
     imageAlt: "리얼인벤션 홈페이지",
+    url: "https://realinvention.co.kr/index.html",
   },
   {
     title: "고교학점제 홈페이지",
@@ -109,6 +110,7 @@ const WORK_LIST = [
     ],
     image: "works/consulting.png",
     imageAlt: "한국학교컨설팅협회 홈페이지",
+    url: "https://schoolconsulting.net/",
   },
   {
     title: "한국학교컨설팅협회 성과관리 시스템 홈페이지",
@@ -272,76 +274,102 @@ function Works() {
           }
           className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5"
         >
-          {filteredList.map((item, index) => (
-            <li
-              key={`${item.subTitle}-${item.title}`}
-              ref={(el) => {
-                cardRefs.current[index] = el;
-              }}
-              className={`group ${cardBg} flex flex-col transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl hover:shadow-gray-400/40 dark:hover:shadow-black/50 hover:ring-2 hover:ring-[var(--point)]/20`}
-            >
-              {/* 위: 이미지 영역 (세로형) */}
-              <div className="w-full h-[200px] sm:h-[240px] bg-gray-100 dark:bg-black/40 relative overflow-hidden rounded-t-3xl">
-                {item.image ? (
-                  <img
-                    src={`${publicUrl}/images/${item.image}`}
-                    alt={item.imageAlt || item.title}
-                    className="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-110 group-hover:brightness-105"
-                    onError={(e) => {
-                      e.target.style.display = "none";
-                      const fallback = e.target.nextElementSibling;
-                      if (fallback) fallback.classList.remove("hidden");
-                    }}
-                  />
-                ) : null}
-                <div
-                  className={`w-full h-full flex items-center justify-center text-secondary text-[12px] ${
-                    item.image ? "hidden" : ""
-                  }`}
-                  aria-hidden="true"
-                >
-                  —
-                </div>
-              </div>
-              {/* 아래: 텍스트 영역 */}
-              <div className="flex flex-col p-4 sm:p-5">
-                <span className="text-subtitle text-[14px] md:text-[16px] font-medium block mb-1">
-                  {item.subTitle}
-                </span>
-                <strong className="text-primary text-[14px] md:text-[16px] font-bold block mb-1 leading-snug">
-                  {item.title}
-                </strong>
-                <p className="text-detail text-[14px] md:text-[16px] leading-relaxed">
-                  {item.desc}
-                </p>
-                {item.contribution != null && (
-                  <p className="text-secondary text-[12px] md:text-[13px] font-medium mt-1.5">
-                    기여도 {item.contribution}
-                  </p>
-                )}
-                {item.tasks && item.tasks.length > 0 && (
-                  <div className="mt-2 pt-2 border-t border-gray-200/80 dark:border-white/10">
-                    <span className="text-primary text-[13px] md:text-[14px] font-semibold block mb-1.5">
-                      담당 내용
-                    </span>
-                    <ul className="list-none space-y-1">
-                      {item.tasks.map((task, i) => (
-                        <li
-                          key={i}
-                          className="text-detail text-[13px] md:text-[14px] leading-relaxed flex gap-2"
-                        >
-                          <span className="text-point shrink-0" aria-hidden="true">
-                            ·
-                          </span>
-                          {task}
-                        </li>
-                      ))}
-                    </ul>
+          {filteredList.map((item, index) => {
+            const Wrapper = item.url ? "a" : "div";
+            const wrapperProps = item.url
+              ? {
+                  href: item.url,
+                  target: "_blank",
+                  rel: "noreferrer",
+                  className:
+                    "block flex flex-col flex-1 min-h-full cursor-pointer focus-visible:ring-2 focus-visible:ring-[var(--point)] focus-visible:ring-inset focus-visible:outline-none",
+                }
+              : { className: "flex flex-col flex-1 min-h-full" };
+            return (
+              <li
+                key={`${item.subTitle}-${item.title}`}
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                className={`group ${cardBg} flex flex-col transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl hover:shadow-gray-400/40 dark:hover:shadow-black/50 hover:ring-2 hover:ring-[var(--point)]/20`}
+              >
+                <Wrapper {...wrapperProps}>
+                  {/* 위: 이미지 영역 (세로형) */}
+                  <div className="w-full h-[200px] sm:h-[240px] bg-gray-100 dark:bg-black/40 relative overflow-hidden rounded-t-3xl">
+                    {item.image ? (
+                      <img
+                        src={`${publicUrl}/images/${item.image}`}
+                        alt={item.imageAlt || item.title}
+                        className="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-110 group-hover:brightness-105"
+                        onError={(e) => {
+                          e.target.style.display = "none";
+                          const fallback = e.target.nextElementSibling;
+                          if (fallback) fallback.classList.remove("hidden");
+                        }}
+                      />
+                    ) : null}
+                    <div
+                      className={`w-full h-full flex items-center justify-center text-secondary text-[12px] ${
+                        item.image ? "hidden" : ""
+                      }`}
+                      aria-hidden="true"
+                    >
+                      —
+                    </div>
+                    {/* 호버 시 사이트 이동 힌트 (url 있는 카드만) */}
+                    {item.url && (
+                      <span
+                        className="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1.5 text-[12px] font-medium text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                        aria-hidden="true"
+                      >
+                        사이트 보기
+                        <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </span>
+                    )}
                   </div>
-                )}
-              </div>
-            </li>
-          ))}
+                  {/* 아래: 텍스트 영역 */}
+                  <div className="flex flex-col p-4 sm:p-5">
+                    <span className="text-subtitle text-[14px] md:text-[16px] font-medium block mb-1">
+                      {item.subTitle}
+                    </span>
+                    <strong className="text-primary text-[14px] md:text-[16px] font-bold block mb-1 leading-snug">
+                      {item.title}
+                    </strong>
+                    <p className="text-detail text-[14px] md:text-[16px] leading-relaxed">
+                      {item.desc}
+                    </p>
+                    {item.contribution != null && (
+                      <p className="text-secondary text-[12px] md:text-[13px] font-medium mt-1.5">
+                        기여도 {item.contribution}
+                      </p>
+                    )}
+                    {item.tasks && item.tasks.length > 0 && (
+                      <div className="mt-2 pt-2 border-t border-gray-200/80 dark:border-white/10">
+                        <span className="text-primary text-[13px] md:text-[14px] font-semibold block mb-1.5">
+                          담당 내용
+                        </span>
+                        <ul className="list-none space-y-1">
+                          {item.tasks.map((task, i) => (
+                            <li
+                              key={i}
+                              className="text-detail text-[13px] md:text-[14px] leading-relaxed flex gap-2"
+                            >
+                              <span className="text-point shrink-0" aria-hidden="true">
+                                ·
+                              </span>
+                              {task}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </Wrapper>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
