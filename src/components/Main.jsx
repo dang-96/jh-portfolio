@@ -6,8 +6,8 @@ function Main() {
   return (
     <main>
       <About />
-      <Project />
       <Works />
+      <Project />
     </main>
   );
 }

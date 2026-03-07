@@ -14,7 +14,7 @@ function AnimatedProjectList({ projects, cardBg }) {
   });
 
   return (
-    <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-14">
+    <ul className="grid grid-cols-1 gap-y-12">
       {projects.map((item, idx) => (
         <animated.li
           key={item.id}
@@ -26,15 +26,16 @@ function AnimatedProjectList({ projects, cardBg }) {
           className={`
             group w-full
             ${cardBg} rounded-3xl shadow-md shadow-gray-300/60 dark:shadow-xl
-            flex flex-col items-stretch
+            flex flex-col sm:flex-row items-stretch min-h-0 overflow-hidden
             transition-all duration-300 ease-out
             hover:scale-[1.02] hover:-translate-y-1
             hover:shadow-2xl hover:shadow-gray-400/40 dark:hover:shadow-black/50
             hover:ring-2 hover:ring-[var(--point)]/20
           `}
         >
+          {/* 왼쪽: 이미지 영역 */}
           <div
-            className="block w-full h-[240px] sm:h-[280px] md:h-[300px] rounded-t-3xl overflow-hidden relative bg-gray-100 dark:bg-black pointer-events-none"
+            className="w-full sm:w-[380px] md:w-[440px] shrink-0 h-[240px] sm:h-auto sm:min-h-[320px] rounded-t-3xl sm:rounded-t-none sm:rounded-l-3xl overflow-hidden relative bg-gray-100 dark:bg-black pointer-events-none"
             aria-hidden="true"
           >
             <img
@@ -44,7 +45,8 @@ function AnimatedProjectList({ projects, cardBg }) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-transparent to-transparent dark:from-black/40 dark:to-transparent pointer-events-none" />
           </div>
-          <div className="flex flex-col gap-2 p-4 sm:p-5 pb-4 flex-1">
+          {/* 오른쪽: 텍스트 영역 */}
+          <div className="flex flex-col gap-2 p-4 sm:p-5 pb-4 flex-1 min-w-0">
             <div className="flex items-center gap-4 mb-1">
               <h4 className="text-primary text-[18px] md:text-[22px] font-bold">
                 {item.title}

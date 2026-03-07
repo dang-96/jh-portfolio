@@ -250,16 +250,30 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator::before {
   background-repeat: no-repeat;
 }
 
-/* 섹션 배경: 라이트/다크 */
-.section-about,
-.section-project,
-.section-works {
+/* 섹션 배경: 라이트/다크 (Works ↔ Project 배경 구분 후 교차 적용) */
+.section-about {
   background: linear-gradient(120deg, #f0f4f5 0%, #e2e6e9 100%);
   transition: background 0.25s ease;
 }
-.dark .section-about,
-.dark .section-project,
+.dark .section-about {
+  background: linear-gradient(120deg, #191c1f 0%, #212c23 100%);
+}
+
+/* Works 섹션 (현재 Project 썼던 배경) */
+.section-works {
+  background: linear-gradient(120deg, #e8eef0 0%, #dce2e5 100%);
+  transition: background 0.25s ease;
+}
 .dark .section-works {
+  background: linear-gradient(120deg, #1a1e22 0%, #1e2628 100%);
+}
+
+/* Project 섹션 (현재 Works 썼던 배경) */
+.section-project {
+  background: linear-gradient(120deg, #f0f4f5 0%, #e2e6e9 100%);
+  transition: background 0.25s ease;
+}
+.dark .section-project {
   background: linear-gradient(120deg, #191c1f 0%, #212c23 100%);
 }
 

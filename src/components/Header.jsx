@@ -5,14 +5,14 @@ import { useActiveSection } from "../hooks/useActiveSection";
 
 const SECTION_IDS = [
   "about-section",
-  "project-section",
   "works-section",
+  "project-section",
 ];
 
 const NAV_LIST = [
   { href: "#about-section", id: "about-section", text: "ABOUT" },
-  { href: "#project-section", id: "project-section", text: "PROJECT" },
   { href: "#works-section", id: "works-section", text: "WORKS" },
+  { href: "#project-section", id: "project-section", text: "PROJECT" },
 ];
 
 function Header() {
