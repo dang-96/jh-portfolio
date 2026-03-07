@@ -24,29 +24,28 @@ function AnimatedProjectList({ projects, cardBg }) {
             willChange: "opacity, transform",
           }}
           className={`
-            w-full
+            group w-full
             ${cardBg} rounded-3xl shadow-md shadow-gray-300/60 dark:shadow-xl
             flex flex-col items-stretch
             transition-all duration-300 ease-out
-            hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl hover:shadow-gray-400/50 dark:hover:shadow-2xl
+            hover:scale-[1.02] hover:-translate-y-1
+            hover:shadow-2xl hover:shadow-gray-400/40 dark:hover:shadow-black/50
+            hover:ring-2 hover:ring-[var(--point)]/20
           `}
         >
-          <a
-            href={item.siteUrl}
-            className="block w-full h-[240px] sm:h-[280px] md:h-[300px] rounded-t-3xl overflow-hidden relative group bg-gray-100 dark:bg-black"
-            target="_blank"
-            rel="noreferrer"
-            tabIndex={-1}
+          <div
+            className="block w-full h-[240px] sm:h-[280px] md:h-[300px] rounded-t-3xl overflow-hidden relative bg-gray-100 dark:bg-black pointer-events-none"
+            aria-hidden="true"
           >
             <img
               src={item.image}
               alt={item.imageAlt}
-              className="project-card-img w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-110"
+              className="project-card-img w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-110 group-hover:brightness-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-transparent to-transparent dark:from-black/40 dark:to-transparent pointer-events-none" />
-          </a>
+          </div>
           <div className="flex flex-col gap-2 p-4 sm:p-5 pb-4 flex-1">
-            <div className="flex items-center gap-4 mb-2">
+            <div className="flex items-center gap-4 mb-1">
               <h4 className="text-primary text-[18px] md:text-[22px] font-bold">
                 {item.title}
               </h4>
@@ -79,9 +78,40 @@ function AnimatedProjectList({ projects, cardBg }) {
                 </a>
               </div>
             </div>
-            <p className="text-detail text-[14px] md:text-[16px] font-normal leading-relaxed mt-1">
+            {item.period != null && item.contribution != null && (
+              <p className="text-secondary text-[12px] md:text-[13px] font-medium mb-1">
+                기간 {item.period} · 기여도 {item.contribution}
+              </p>
+            )}
+            <p className="text-detail text-[14px] md:text-[16px] font-normal leading-relaxed">
               {item.content}
             </p>
+            {item.devDescription && item.devDescription.length > 0 && (
+              <div className="mt-2 pt-2 border-t border-gray-200/80 dark:border-white/10">
+                <span className="text-primary text-[13px] md:text-[14px] font-semibold block mb-1.5">
+                  개발 내용
+                </span>
+                <ul className="list-none space-y-1">
+                  {Array.isArray(item.devDescription) ? (
+                    item.devDescription.map((desc, i) => (
+                      <li
+                        key={i}
+                        className="text-detail text-[13px] md:text-[14px] leading-relaxed flex gap-2"
+                      >
+                        <span className="text-point shrink-0" aria-hidden="true">
+                          ·
+                        </span>
+                        {desc}
+                      </li>
+                    ))
+                  ) : (
+                    <li className="text-detail text-[13px] md:text-[14px] leading-relaxed">
+                      {item.devDescription}
+                    </li>
+                  )}
+                </ul>
+              </div>
+            )}
           </div>
         </animated.li>
       ))}
