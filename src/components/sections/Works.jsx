@@ -203,7 +203,6 @@ function Works() {
     return () => ctx.revert();
   }, [activeTab]);
 
-  const publicUrl = process.env.PUBLIC_URL || "";
   const cardBg =
     "bg-white border border-gray-200 rounded-3xl shadow-xl dark:bg-gradient-to-br dark:from-[#22272e] dark:to-[#232d28] dark:border-white/10 overflow-hidden";
 
@@ -272,7 +271,7 @@ function Works() {
               ? "tab-all"
               : `tab-${activeTab.replace(/[^\w가-힣]/g, "-")}`
           }
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5"
+          className="grid grid-cols-1 gap-4 md:gap-5"
         >
           {filteredList.map((item, index) => {
             const Wrapper = item.url ? "a" : "div";
@@ -294,42 +293,6 @@ function Works() {
                 className={`group ${cardBg} flex flex-col transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-1 hover:shadow-2xl hover:shadow-gray-400/40 dark:hover:shadow-black/50 hover:ring-2 hover:ring-[var(--point)]/20`}
               >
                 <Wrapper {...wrapperProps}>
-                  {/* 위: 이미지 영역 (세로형) */}
-                  <div className="w-full h-[200px] sm:h-[240px] bg-gray-100 dark:bg-black/40 relative overflow-hidden rounded-t-3xl">
-                    {item.image ? (
-                      <img
-                        src={`${publicUrl}/images/${item.image}`}
-                        alt={item.imageAlt || item.title}
-                        className="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-110 group-hover:brightness-105"
-                        onError={(e) => {
-                          e.target.style.display = "none";
-                          const fallback = e.target.nextElementSibling;
-                          if (fallback) fallback.classList.remove("hidden");
-                        }}
-                      />
-                    ) : null}
-                    <div
-                      className={`w-full h-full flex items-center justify-center text-secondary text-[12px] ${
-                        item.image ? "hidden" : ""
-                      }`}
-                      aria-hidden="true"
-                    >
-                      —
-                    </div>
-                    {/* 호버 시 사이트 이동 힌트 (url 있는 카드만) */}
-                    {item.url && (
-                      <span
-                        className="absolute bottom-2 right-2 flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1.5 text-[12px] font-medium text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-                        aria-hidden="true"
-                      >
-                        사이트 보기
-                        <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </span>
-                    )}
-                  </div>
-                  {/* 아래: 텍스트 영역 */}
                   <div className="flex flex-col p-4 sm:p-5">
                     <span className="text-subtitle text-[14px] md:text-[16px] font-medium block mb-1">
                       {item.subTitle}
