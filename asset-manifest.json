@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/jh-portfolio/static/css/main.bccd9f9f.css",
-    "main.js": "/jh-portfolio/static/js/main.c53806e2.js",
+    "main.css": "/jh-portfolio/static/css/main.55363915.css",
+    "main.js": "/jh-portfolio/static/js/main.e5dd74c1.js",
     "static/media/NotoSans-Light.svg": "/jh-portfolio/static/media/NotoSans-Light.01ccf43515394780db81.svg",
     "static/media/NotoSans-Bold.svg": "/jh-portfolio/static/media/NotoSans-Bold.d52b4dbb52f0e5984620.svg",
     "static/media/NotoSans-Medium.svg": "/jh-portfolio/static/media/NotoSans-Medium.b1708ec6dfb54ef917e6.svg",
@@ -15,11 +15,11 @@
     "static/media/NotoSans-Regular.woff2": "/jh-portfolio/static/media/NotoSans-Regular.12c5f3f9045594368915.woff2",
     "static/media/NotoSans-Light.woff2": "/jh-portfolio/static/media/NotoSans-Light.d3283d226f8f74e7a8d5.woff2",
     "index.html": "/jh-portfolio/index.html",
-    "main.bccd9f9f.css.map": "/jh-portfolio/static/css/main.bccd9f9f.css.map",
-    "main.c53806e2.js.map": "/jh-portfolio/static/js/main.c53806e2.js.map"
+    "main.55363915.css.map": "/jh-portfolio/static/css/main.55363915.css.map",
+    "main.e5dd74c1.js.map": "/jh-portfolio/static/js/main.e5dd74c1.js.map"
   },
   "entrypoints": [
-    "static/css/main.bccd9f9f.css",
-    "static/js/main.c53806e2.js"
+    "static/css/main.55363915.css",
+    "static/js/main.e5dd74c1.js"
   ]
 }
