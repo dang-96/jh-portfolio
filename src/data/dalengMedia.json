@@ -1,0 +1,17 @@
+{
+  "main": "main/main.mp4",
+  "sub": [
+    "sub_ai_report.mp4",
+    "sub_comprehensive_report.mp4",
+    "sub_evaluation_report.mp4"
+  ],
+  "basic": "basic/basic.mp4",
+  "question": [
+    "guide_grammar.mp4",
+    "guide_reading.mp4",
+    "guide_vocabulary.mp4",
+    "item_grammar.mp4",
+    "item_reading.mp4",
+    "item_vocabulary.mp4"
+  ]
+}
