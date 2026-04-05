@@ -27,6 +27,8 @@ function Project() {
       ],
       siteUrl: "https://poke-sensei.vercel.app/",
       githubUrl: "https://github.com/dang-96/poke-sensei",
+      moreUrl:
+        "https://fair-verdict-78d.notion.site/Poke-Sensei-1d5426fffa2b81d580a4fb1ed386b145",
     },
     {
       id: "moving",
@@ -43,6 +45,8 @@ function Project() {
       ],
       siteUrl: "https://ott-moving.vercel.app/",
       githubUrl: "https://github.com/dang-96/moving",
+      moreUrl:
+        "https://fair-verdict-78d.notion.site/Moving-1e3426fffa2b81438d05c59f3aed2581?pvs=74",
     },
     {
       id: "epigram",
@@ -59,6 +63,8 @@ function Project() {
       ],
       siteUrl: "https://epigram-share.vercel.app/",
       githubUrl: "https://github.com/dang-96/Epigram",
+      moreUrl:
+        "https://fair-verdict-78d.notion.site/Epigram-1e3426fffa2b8160b638f9348be30dc4?pvs=74",
     },
     {
       id: "linkbrary",
@@ -75,6 +81,8 @@ function Project() {
       ],
       siteUrl: "https://l1nkbrary.netlify.app/",
       githubUrl: "https://github.com/dang-96/Linkbrary",
+      moreUrl:
+        "https://fair-verdict-78d.notion.site/LinkBrary-1e3426fffa2b81119a9ec4e37c479540?pvs=74",
     },
   ];
 

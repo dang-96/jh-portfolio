@@ -1,4 +1,4 @@
-import { useRef, useEffect, useMemo, useState } from "react";
+import { useRef, useEffect, useMemo, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Modal from "../Modal";
@@ -9,6 +9,15 @@ gsap.registerPlugin(ScrollTrigger);
 function dalengMediaUrl(...segments) {
   const base = process.env.PUBLIC_URL || "";
   const path = ["media", "daleng", ...segments]
+    .map((s) => encodeURIComponent(s))
+    .join("/");
+  return `${base}/${path}`;
+}
+
+/** public/images/... 경로 */
+function publicImagesUrl(...segments) {
+  const base = process.env.PUBLIC_URL || "";
+  const path = ["images", ...segments]
     .map((s) => encodeURIComponent(s))
     .join("/");
   return `${base}/${path}`;
@@ -47,54 +56,233 @@ function WorkModalSectionBlocks({ sections }) {
 }
 
 /**
- * modalDemos: { type: 'video' | 'gif', src, caption?, poster?, mime? }
- * — gif는 img로 표시(실제 .gif 또는 대체 정적 이미지 URL)
+ * modalDemos: { type, src, caption?, poster?, mime?, group? }
+ * — group: 같은 문자열이 연속된 항목은 한 덩어리로 묶어 세로 스택(그리드에서는 md:col-span-2)
  */
+function clusterModalDemos(demos) {
+  if (!demos?.length) return [];
+  const out = [];
+  let i = 0;
+  while (i < demos.length) {
+    const g = demos[i].group;
+    if (g != null && g !== "") {
+      const items = [];
+      while (i < demos.length && demos[i].group === g) {
+        items.push(demos[i]);
+        i++;
+      }
+      if (items.length > 1) {
+        out.push({ kind: "group", items });
+      } else {
+        out.push({ kind: "single", items });
+      }
+    } else {
+      out.push({ kind: "single", items: [demos[i]] });
+      i++;
+    }
+  }
+  return out;
+}
+
+/**
+ * modalDemos: { type: 'video' | 'gif' | 'image', src, caption?, poster?, mime?, group? }
+ * — 영상 탭: type === 'video' / 이미지 탭: 'gif' | 'image' (img로 렌더)
+ */
+function DemoFigure({ demo, index, twoColumn, bareImage }) {
+  if (bareImage && demo.type !== "video") {
+    return (
+      <img
+        src={demo.src}
+        alt={demo.caption || `미리보기 ${index + 1}`}
+        className="block h-auto w-full max-w-full object-contain"
+        loading="lazy"
+      />
+    );
+  }
+
+  const mediaBoxClass = twoColumn
+    ? "aspect-video w-full min-h-0 bg-white dark:bg-black/50 max-h-[min(38vh,320px)] md:max-h-none"
+    : "aspect-video w-full max-h-[min(52vh,560px)] bg-white dark:bg-black/50";
+  return (
+    <figure className="flex min-h-0 min-w-0 flex-col overflow-hidden rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-black/40 shadow-inner">
+      <div className={mediaBoxClass}>
+        {demo.type === "video" ? (
+          <video
+            className="h-full w-full object-contain outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none"
+            controls
+            playsInline
+            preload="metadata"
+            poster={demo.poster}
+          >
+            <source
+              src={demo.src}
+              type={
+                demo.mime ||
+                (demo.src?.includes(".mp4") ? "video/mp4" : "video/webm")
+              }
+            />
+          </video>
+        ) : (
+          <img
+            src={demo.src}
+            alt={demo.caption || `미리보기 ${index + 1}`}
+            className="h-full w-full object-contain"
+            loading="lazy"
+          />
+        )}
+      </div>
+      {demo.caption ? (
+        <figcaption className="border-t border-gray-200/80 px-3 py-2.5 text-detail text-[12px] leading-snug dark:border-white/10 md:text-[13px]">
+          {demo.caption}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
 function WorkModalDemoMedia({ demos }) {
-  if (!demos?.length) return null;
+  const videoDemos = useMemo(
+    () => demos?.filter((d) => d.type === "video") ?? [],
+    [demos],
+  );
+  const imageDemos = useMemo(
+    () =>
+      demos?.filter((d) => d.type === "gif" || d.type === "image") ?? [],
+    [demos],
+  );
+
+  const [demoTab, setDemoTab] = useState(
+    () => (videoDemos.length > 0 ? "video" : "image"),
+  );
+  const listRef = useRef(null);
+
+  const pauseVideosInPanel = useCallback(() => {
+    listRef.current?.querySelectorAll("video").forEach((el) => {
+      el.pause();
+    });
+  }, []);
+
+  useEffect(() => {
+    if (demoTab !== "video") pauseVideosInPanel();
+  }, [demoTab, pauseVideosInPanel]);
+
+  const activeList = demoTab === "video" ? videoDemos : imageDemos;
+
+  const activeClusters = useMemo(
+    () => clusterModalDemos(activeList),
+    [activeList],
+  );
+
+  if (videoDemos.length === 0 && imageDemos.length === 0) return null;
+
+  const showToggle = videoDemos.length > 0 && imageDemos.length > 0;
+
   return (
     <div className="work-modal-demos mb-6">
-      <h3 className="text-primary text-[14px] font-bold mb-3">시연</h3>
-      <ul className="list-none space-y-4">
-        {demos.map((demo, i) => (
-          <li key={i}>
-            <figure className="overflow-hidden rounded-2xl border border-gray-200 dark:border-white/10 bg-neutral-100/80 dark:bg-black/40 shadow-inner">
-              <div className="aspect-video w-full max-h-[min(52vh,520px)] bg-neutral-200/60 dark:bg-black/50">
-                {demo.type === "video" ? (
-                  <video
-                    className="h-full w-full object-contain outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none"
-                    controls
-                    playsInline
-                    preload="metadata"
-                    poster={demo.poster}
-                  >
-                    <source
-                      src={demo.src}
-                      type={
-                        demo.mime ||
-                        (demo.src?.includes(".mp4")
-                          ? "video/mp4"
-                          : "video/webm")
-                      }
-                    />
-                  </video>
-                ) : (
-                  <img
-                    src={demo.src}
-                    alt={demo.caption || `시연 ${i + 1}`}
-                    className="h-full w-full object-contain"
-                    loading="lazy"
-                  />
-                )}
-              </div>
-              {demo.caption ? (
-                <figcaption className="border-t border-gray-200/80 px-3 py-2.5 text-detail text-[12px] leading-snug dark:border-white/10 md:text-[13px]">
-                  {demo.caption}
-                </figcaption>
-              ) : null}
-            </figure>
-          </li>
-        ))}
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-gray-200/80 pb-3 dark:border-white/10">
+        <h3 className="text-primary text-[14px] font-bold">미리보기</h3>
+        {showToggle ? (
+          <div
+            role="tablist"
+            aria-label="미리보기 영상·이미지 전환"
+            className="flex rounded-xl border border-gray-200 bg-gray-100/90 p-0.5 dark:border-white/15 dark:bg-white/5"
+          >
+            <button
+              type="button"
+              role="tab"
+              aria-selected={demoTab === "video"}
+              className={`rounded-[10px] px-3 py-1.5 text-[12px] font-semibold transition-colors md:text-[13px] ${
+                demoTab === "video"
+                  ? "bg-white text-primary shadow-sm dark:bg-[#2d333b] dark:text-white"
+                  : "text-secondary hover:text-primary"
+              }`}
+              onClick={() => setDemoTab("video")}
+            >
+              영상
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={demoTab === "image"}
+              className={`rounded-[10px] px-3 py-1.5 text-[12px] font-semibold transition-colors md:text-[13px] ${
+                demoTab === "image"
+                  ? "bg-white text-primary shadow-sm dark:bg-[#2d333b] dark:text-white"
+                  : "text-secondary hover:text-primary"
+              }`}
+              onClick={() => {
+                pauseVideosInPanel();
+                setDemoTab("image");
+              }}
+            >
+              이미지
+            </button>
+          </div>
+        ) : null}
+      </div>
+
+      <ul
+        ref={listRef}
+        className={
+          demoTab === "image"
+            ? "list-none grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5"
+            : "list-none space-y-4"
+        }
+        key={demoTab}
+      >
+        {activeClusters.map((cluster, ci) => {
+          const isImageTab = demoTab === "image";
+          const isGroup = cluster.kind === "group";
+          const liClass =
+            isImageTab && isGroup
+              ? "min-w-0 md:col-span-2"
+              : isImageTab
+                ? "min-w-0"
+                : undefined;
+
+          const baseKey = `${demoTab}-c${ci}-${cluster.items[0].src}`;
+
+          if (isGroup) {
+            return (
+              <li key={baseKey} className={liClass}>
+                <div className="flex flex-col gap-4 md:gap-5">
+                  {cluster.items.map((demo, j) => {
+                    const globalIndex =
+                      activeClusters
+                        .slice(0, ci)
+                        .reduce((s, c) => s + c.items.length, 0) + j;
+                    return (
+                      <DemoFigure
+                        key={`${demo.src}-${j}`}
+                        demo={demo}
+                        index={globalIndex}
+                        twoColumn={isImageTab}
+                        bareImage={isImageTab}
+                      />
+                    );
+                  })}
+                </div>
+              </li>
+            );
+          }
+
+          const demo = cluster.items[0];
+          const globalIndex = activeClusters
+            .slice(0, ci)
+            .reduce((s, c) => s + c.items.length, 0);
+          return (
+            <li
+              key={`${demoTab}-${globalIndex}-${demo.src}`}
+              className={liClass}
+            >
+              <DemoFigure
+                demo={demo}
+                index={globalIndex}
+                twoColumn={isImageTab}
+                bareImage={isImageTab}
+              />
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
@@ -104,7 +292,7 @@ const WORK_LIST = [
   {
     title: "달달영어 플랫폼",
     subTitle: "(주)언플러",
-    desc: "퍼블리싱 (2025.09 ~ 2026.02)",
+    desc: "퍼블리싱 (2025.12)",
     contribution: "50%",
     tasks: [
       "메인·리포트(평가·AI·종합) 서브 화면 퍼블리싱",
@@ -156,7 +344,7 @@ const WORK_LIST = [
   {
     title: "달달영어 기초지단테스트 튜토리얼",
     subTitle: "(주)언플러",
-    desc: "퍼블리싱 (2025.09 ~ 2026.02)",
+    desc: "퍼블리싱 (2025.09)",
     contribution: "100%",
     tasks: ["기초진단 튜토리얼·단계 안내 퍼블리싱", "테스트 진행 흐름 UI"],
     image: "works/daldal-tutorial.png",
@@ -185,7 +373,7 @@ const WORK_LIST = [
   {
     title: "달달영어 문항",
     subTitle: "(주)언플러",
-    desc: "퍼블리싱 (2025.09 ~ 2026.02)",
+    desc: "퍼블리싱 (2025.10 ~ 2026.02)",
     contribution: "100%",
     tasks: [
       "문법·독해·어휘 유형 문항 UI",
@@ -194,6 +382,7 @@ const WORK_LIST = [
     ],
     image: "works/daldal-question.png",
     imageAlt: "달달영어 문항",
+    url: "https://daldaleng.miraenchoco.com/v1/front/main/guest/experience?level=1&serviceType=choco",
     modalIntro:
       "독해, 어휘, 문법 카테고리로 구성된 영어 학습 문항 시스템에서\n객관식, 서술형, 선잇기, 드래그앤드롭, 지문 해석, 빈칸 채우기 등\n다양한 유형의 문항 UI를 퍼블리싱했습니다.\n문항 파일을 기반으로 HTML 구조를 설계하여 약 3,500여 개의 문항 페이지를 제작하고,\n이후 S3와 CMS에 등록해 운영 환경에서 관리될 수 있도록 구성했습니다.",
     modalSections: [
@@ -270,6 +459,53 @@ const WORK_LIST = [
         ],
       },
     ],
+    modalDemos: [
+      {
+        type: "image",
+        src: publicImagesUrl("ri", "realinvention.co.kr_index01.html.png"),
+        caption: "메인",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("ri", "realinvention.co.kr_index02.html.png"),
+        caption: "메인 · 섹션",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl(
+          "ri",
+          "realinvention.co.kr_business_introduce.html.png",
+        ),
+        caption: "사업 소개",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl(
+          "ri",
+          "realinvention.co.kr_company_company01.html.png",
+        ),
+        caption: "회사 소개 (1)",
+        group: "ri-company",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl(
+          "ri",
+          "realinvention.co.kr_company_company02.html.png",
+        ),
+        caption: "회사 소개 (2)",
+        group: "ri-company",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl(
+          "ri",
+          "realinvention.co.kr_company_company03.html.png",
+        ),
+        caption: "회사 소개 (3)",
+        group: "ri-company",
+      },
+    ],
   },
   {
     title: "고교학점제 홈페이지",
@@ -294,6 +530,38 @@ const WORK_LIST = [
           "Swiper 기반 슬라이더 구현",
           "탭 인터랙션 및 팝업 제어",
         ],
+      },
+    ],
+    modalDemos: [
+      {
+        type: "image",
+        src: publicImagesUrl("high-school-credit", "01.png"),
+        caption: "화면 1",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("high-school-credit", "02.png"),
+        caption: "화면 2",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("high-school-credit", "03.png"),
+        caption: "화면 3",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("high-school-credit", "04.png"),
+        caption: "화면 4",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("high-school-credit", "05.png"),
+        caption: "화면 5",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("high-school-credit", "06.png"),
+        caption: "화면 6",
       },
     ],
   },
@@ -322,6 +590,58 @@ const WORK_LIST = [
         ],
       },
     ],
+    modalDemos: [
+      {
+        type: "image",
+        src: publicImagesUrl("entrance-support", "01.png"),
+        caption: "화면 1",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("entrance-support", "02.png"),
+        caption: "화면 2",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("entrance-support", "03.png"),
+        caption: "화면 3",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("entrance-support", "04.png"),
+        caption: "화면 4",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("entrance-support", "05.png"),
+        caption: "화면 5",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("entrance-support", "06.png"),
+        caption: "화면 6",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("entrance-support", "07.png"),
+        caption: "화면 7",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("entrance-support", "08.png"),
+        caption: "화면 8",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("entrance-support", "09.png"),
+        caption: "화면 9",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("entrance-support", "10.png"),
+        caption: "화면 10",
+      },
+    ],
   },
   {
     title: "Bio-PRIDE 공유대학홈페이지",
@@ -346,6 +666,38 @@ const WORK_LIST = [
           "반응형 및 크로스 브라우징 대응",
           "인터랙션 구현",
         ],
+      },
+    ],
+    modalDemos: [
+      {
+        type: "image",
+        src: publicImagesUrl("shared-university", "01.png"),
+        caption: "화면 1",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("shared-university", "02.png"),
+        caption: "화면 2",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("shared-university", "03.png"),
+        caption: "화면 3",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("shared-university", "04.png"),
+        caption: "화면 4",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("shared-university", "05.png"),
+        caption: "화면 5",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("shared-university", "06.png"),
+        caption: "화면 6",
       },
     ],
   },
@@ -375,6 +727,58 @@ const WORK_LIST = [
         ],
       },
     ],
+    modalDemos: [
+      {
+        type: "image",
+        src: publicImagesUrl("school-consulting", "01.png"),
+        caption: "화면 1",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("school-consulting", "02.png"),
+        caption: "화면 2",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("school-consulting", "03.png"),
+        caption: "화면 3",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("school-consulting", "04.png"),
+        caption: "화면 4",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("school-consulting", "05.png"),
+        caption: "화면 5",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("school-consulting", "06.png"),
+        caption: "화면 6",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("school-consulting", "07.png"),
+        caption: "화면 7",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("school-consulting", "08.png"),
+        caption: "화면 8",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("school-consulting", "09.png"),
+        caption: "화면 9",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("school-consulting", "10.png"),
+        caption: "화면 10",
+      },
+    ],
   },
   {
     title: "한국학교컨설팅협회 성과관리 시스템 홈페이지",
@@ -399,6 +803,28 @@ const WORK_LIST = [
           "체크리스트 목록/상세/상태 관리 UI 구현",
           "공지사항 및 파일 관리 기능 구현",
         ],
+      },
+    ],
+    modalDemos: [
+      {
+        type: "image",
+        src: publicImagesUrl("performance-system", "01.png"),
+        caption: "화면 1",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("performance-system", "02.png"),
+        caption: "화면 2",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("performance-system", "03.png"),
+        caption: "화면 3",
+      },
+      {
+        type: "image",
+        src: publicImagesUrl("performance-system", "04.png"),
+        caption: "화면 4",
       },
     ],
   },
@@ -670,7 +1096,7 @@ function Works() {
         open={selectedWork != null}
         onClose={() => setSelectedWork(null)}
         title={selectedWork?.title}
-        className="sm:max-w-4xl lg:max-w-5xl"
+        className="w-full sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl"
       >
         {selectedWork && (
           <>
@@ -726,14 +1152,12 @@ function Works() {
               )
             )}
 
-            <WorkModalDemoMedia demos={selectedWork.modalDemos} />
-
             {selectedWork.url && (
               <a
                 href={selectedWork.url}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold bg-point text-white dark:text-[#0f172a] hover:opacity-90 transition-opacity"
+                className="mb-6 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold bg-point text-white dark:text-[#0f172a] hover:opacity-90 transition-opacity"
               >
                 사이트 바로가기
                 <svg
@@ -752,6 +1176,11 @@ function Works() {
                 </svg>
               </a>
             )}
+
+            <WorkModalDemoMedia
+              key={`${selectedWork.subTitle}-${selectedWork.title}-demos`}
+              demos={selectedWork.modalDemos}
+            />
           </>
         )}
       </Modal>

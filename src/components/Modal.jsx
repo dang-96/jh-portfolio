@@ -69,8 +69,7 @@ function Modal({ open, onClose, title, children, className }) {
         className={clsx(
           "relative z-[1] flex min-h-0 w-full max-h-[92vh] flex-col sm:max-h-[92vh] overflow-y-auto overscroll-contain rounded-t-3xl sm:rounded-3xl",
           "bg-white dark:bg-[#22272e] border border-gray-200 dark:border-white/10 shadow-2xl",
-          "sm:max-w-2xl",
-          className,
+          className ?? "sm:max-w-2xl",
         )}
       >
         <div className="sticky top-0 z-[2] flex items-start justify-between gap-3 px-5 pt-4 pb-3 border-b border-gray-200/80 dark:border-white/10 bg-white/95 dark:bg-[#22272e]/95 backdrop-blur-md">

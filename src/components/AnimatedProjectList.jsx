@@ -47,11 +47,11 @@ function AnimatedProjectList({ projects, cardBg }) {
           </div>
           {/* 아래: 텍스트 영역 */}
           <div className="flex flex-col gap-2 p-4 sm:p-5 pb-4 flex-1">
-            <div className="flex items-center gap-4 mb-1">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-1">
               <h4 className="text-primary text-[18px] md:text-[22px] font-bold">
                 {item.title}
               </h4>
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                 <a
                   href={item.siteUrl}
                   className="
@@ -61,7 +61,7 @@ function AnimatedProjectList({ projects, cardBg }) {
                     transition-all duration-200 ease-out active:scale-100
                   "
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   WebSite
                 </a>
@@ -74,10 +74,25 @@ function AnimatedProjectList({ projects, cardBg }) {
                     transition-all duration-200 ease-out active:scale-100
                   "
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   GitHub
                 </a>
+                {item.moreUrl ? (
+                  <a
+                    href={item.moreUrl}
+                    className="
+                      text-[13px] md:text-[14px] px-4 py-1 rounded-full font-semibold border border-[var(--point)]/60
+                      bg-white/80 dark:bg-white/10 text-[var(--text-primary)] shadow
+                      hover:bg-[var(--point)]/20 hover:border-[var(--point)] hover:scale-105 hover:shadow-md
+                      transition-all duration-200 ease-out active:scale-100
+                    "
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    More
+                  </a>
+                ) : null}
               </div>
             </div>
             {item.period != null && item.contribution != null && (

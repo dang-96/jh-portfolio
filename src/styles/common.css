@@ -287,7 +287,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator::before {
 
 /* Noto Sans KR: Google Fonts CDN 사용 (모바일에서 SVG 폰트 미지원으로 인한 깨짐 방지) */
 
-/* Works 모달 시연: 비디오 포커스 시 브라우저 기본 파란 outline 제거 */
+/* Works 모달 미리보기: 비디오 포커스 시 브라우저 기본 파란 outline 제거 */
 .work-modal-demos video:focus,
 .work-modal-demos video:focus-visible {
   outline: none;
