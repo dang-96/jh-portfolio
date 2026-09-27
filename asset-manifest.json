@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/jh-portfolio/static/css/main.276c435d.css",
-    "main.js": "/jh-portfolio/static/js/main.5464755e.js",
+    "main.js": "/jh-portfolio/static/js/main.bef1be50.js",
     "static/media/NotoSans-Light.svg": "/jh-portfolio/static/media/NotoSans-Light.01ccf43515394780db81.svg",
     "static/media/NotoSans-Bold.svg": "/jh-portfolio/static/media/NotoSans-Bold.d52b4dbb52f0e5984620.svg",
     "static/media/NotoSans-Medium.svg": "/jh-portfolio/static/media/NotoSans-Medium.b1708ec6dfb54ef917e6.svg",
@@ -16,10 +16,10 @@
     "static/media/NotoSans-Light.woff2": "/jh-portfolio/static/media/NotoSans-Light.d3283d226f8f74e7a8d5.woff2",
     "index.html": "/jh-portfolio/index.html",
     "main.276c435d.css.map": "/jh-portfolio/static/css/main.276c435d.css.map",
-    "main.5464755e.js.map": "/jh-portfolio/static/js/main.5464755e.js.map"
+    "main.bef1be50.js.map": "/jh-portfolio/static/js/main.bef1be50.js.map"
   },
   "entrypoints": [
     "static/css/main.276c435d.css",
-    "static/js/main.5464755e.js"
+    "static/js/main.bef1be50.js"
   ]
 }
