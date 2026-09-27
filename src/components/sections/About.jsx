@@ -105,7 +105,12 @@ function AboutAnimatedContent({ cardBg }) {
               rel="noreferrer"
             >
               이력서 바로가기
-              <svg className="w-4 h-4 shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <svg
+                className="w-4 h-4 shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-1"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z" />
               </svg>
             </a>
@@ -151,6 +156,12 @@ function AboutAnimatedContent({ cardBg }) {
             WORK EXPERIENCE
           </h3>
           <ul className="[&_li]:mb-3 [&_li:last-child]:mb-0">
+            <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
+              크레아이디
+              <span className="text-subtitle text-[14px] md:text-[16px]">
+                (2026.05 ~ 재직중) 웹 퍼블리셔(사원)
+              </span>
+            </li>
             <li className="text-detail text-[14px] md:text-[16px] flex flex-col gap-1.5">
               (주)언플러
               <span className="text-subtitle text-[14px] md:text-[16px]">

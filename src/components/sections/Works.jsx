@@ -146,13 +146,12 @@ function WorkModalDemoMedia({ demos }) {
     [demos],
   );
   const imageDemos = useMemo(
-    () =>
-      demos?.filter((d) => d.type === "gif" || d.type === "image") ?? [],
+    () => demos?.filter((d) => d.type === "gif" || d.type === "image") ?? [],
     [demos],
   );
 
-  const [demoTab, setDemoTab] = useState(
-    () => (videoDemos.length > 0 ? "video" : "image"),
+  const [demoTab, setDemoTab] = useState(() =>
+    videoDemos.length > 0 ? "video" : "image",
   );
   const listRef = useRef(null);
 
@@ -243,7 +242,10 @@ function WorkModalDemoMedia({ demos }) {
 
           if (isGroup) {
             return (
-              <li key={baseKey} className={liClass}>
+              <li
+                key={baseKey}
+                className={liClass}
+              >
                 <div className="flex flex-col gap-4 md:gap-5">
                   {cluster.items.map((demo, j) => {
                     const globalIndex =
@@ -289,6 +291,20 @@ function WorkModalDemoMedia({ demos }) {
 }
 
 const WORK_LIST = [
+  {
+    title: "NH농협은행 프로젝트 NEO 계정계 차세대 시스템 퍼블리싱",
+    subTitle: "크레아이디",
+    desc: "퍼블리싱 (2025.12)",
+    contribution: "10%",
+    tasks: [
+      "EasyBuilder 기반 WebSquare 금융 업무화면 개발",
+      "프로젝트 UI 가이드 및 업무 요건에 따른 화면 수정·개선",
+    ],
+    image: "",
+    imageAlt: "",
+    modalIntro:
+      "기존 금융 업무시스템의 약 2만 개 업무화면을 차세대 WebSquare 환경으로 전환하는 프로젝트입니다. 기존 화면을 분석하여 UI 구조를 재구성하고, 프로젝트 UI 가이드와 업무 요건에 맞춰 금융 업무화면을 퍼블리싱 및 수정·개선했습니다.",
+  },
   {
     title: "달달영어 플랫폼",
     subTitle: "(주)언플러",
@@ -342,7 +358,7 @@ const WORK_LIST = [
     ],
   },
   {
-    title: "달달영어 기초지단테스트 튜토리얼",
+    title: "달달영어 기초진단테스트 튜토리얼",
     subTitle: "(주)언플러",
     desc: "퍼블리싱 (2025.09)",
     contribution: "100%",
